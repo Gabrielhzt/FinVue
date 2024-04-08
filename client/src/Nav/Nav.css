@@ -5,6 +5,8 @@
     "nav content";
 }
 
+/* Nav */
+
 nav {
     grid-area: nav;
     height: 100vh;
@@ -15,8 +17,9 @@ nav {
 }
 
 .Title {
-    font-size: 35px;
+    font-size: 40px;
     margin: 40px 0px 60px;
+    text-align: center;
 }
 
 ul {
@@ -33,7 +36,6 @@ ul {
 a.active {
     background-color: #41B92D;
     color: #fff;
-    padding: 5px 10px;
     border-radius: 5px;
 }
 
@@ -44,6 +46,7 @@ a.active {
     gap: 10px;
     font-size: 17px;
     margin-left: 0px;
+    padding: 5px 10px;
 }
 
 .profile {
@@ -77,13 +80,50 @@ a.active {
 }
 
 .btn {
-    padding: 6px;
+    padding: 8px 9px;
     background-color: transparent;
-    border: 1px solid black;
+    border: 1.5px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Head */
+
+.welcome {
+    display: flex;
+    align-items:flex-start;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.welcome h1 {
+    font-size: 40px;
+    margin-bottom: 5px;
+}
+
+.welcome p {
+    color: #AFD7A8;
+    font-size: 17px;
+    font-weight: 300;
+}
+
+.head-btn {
+    display: flex;
+    gap: 15px;
+    margin-top: 12px;
+}
+
+.btn-2 {
+    padding: 6px 12px;
+    background-color: #41B92D;
+    color: #fff;
+    font-size: 18px;
+    border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
 .content {
     grid-area: content;
+    padding: 40px;
 }
