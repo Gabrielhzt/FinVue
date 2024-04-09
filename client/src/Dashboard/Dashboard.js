@@ -1,9 +1,90 @@
 import React from "react";
+import './Dashboard.css';
+import BarChart from "../Chart/Chart";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowTrendUp } from '@fortawesome/free-solid-svg-icons';
+import BigChart from "../Chart/BigChart/BigChart";
 
 const Dashboard = () => {
+
+    const data = {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June'],
+        values: [19, 8, 14, 10, 16, 19]
+    };
+
+    const data_2 = {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug'],
+        values: [19, 8, 14, 10, 16, 19, 14, 18]
+    };
+
     return (
         <div>
-            <h1>hello</h1>
+            <div className="info-top">
+                <div className="green">
+                    <div className="flex-2">
+                        <div>
+                            <h5 className="chart-title">Income</h5>
+                            <h2 className="chart-info">$32,162</h2>
+                        </div>
+                        <div className="grow">
+                            <FontAwesomeIcon icon={faArrowTrendUp} />
+                            <p>34%</p>
+                        </div>
+                    </div>
+                    <BarChart data={data} color={'#fff'} width={100} height={1000} barSpacing={10} />
+                </div>
+                <div className="grey">
+                    <div className="flex-2">
+                        <div>
+                            <h5 className="chart-title-2">Expenses</h5>
+                            <h2>$4,162</h2>
+                        </div>
+                        <div className="grow-2">
+                            <FontAwesomeIcon icon={faArrowTrendUp} />
+                            <p>34%</p>
+                        </div>
+                    </div>
+                    <BarChart data={data} color={'#41B92D'} />
+                </div>
+                <div className="grey-2">
+                    <div>
+                        <h5 className="chart-title-2">Financial Health Overview</h5>
+                        <p className="description">The user maintains a healthy and stable financial balance.</p>
+                    </div>
+                    <h2 className="balance">Stable</h2>
+                </div>
+            </div>
+            <div className="flex-3">
+                <div>
+                    <div className="info-chart">
+                        <p className="chart-title-3">Total Funds</p>
+                        <h2>$324,162</h2>
+                    </div>
+                    <BigChart data={data_2} />
+                </div>
+                <div className="members-info">
+                    <div>
+                        <p className="title-info-members">Members' Totals</p>
+                        <h2 className="pers-total">You: $120,000</h2>
+                    </div>
+                    <div className="other-members">
+                        <h4>Other Members:</h4>
+                        <div className="other-profile">
+                            <div className="profile-img-2"></div>
+                            <p>Eric: $20,000</p>
+                        </div>
+                        <div className="other-profile">
+                            <div className="profile-img-2"></div>
+                            <p>Fred: $35,000</p>
+                        </div>
+
+                        <div className="other-profile">
+                            <div className="profile-img-2"></div>
+                            <p>Eric: $13,000</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

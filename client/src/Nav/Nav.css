@@ -70,6 +70,7 @@ a.active {
 
 .profile p {
     font-size: 14px;
+    font-weight: 300;
     margin-bottom: 10px;
 }
 
@@ -97,13 +98,13 @@ a.active {
 }
 
 .welcome h1 {
-    font-size: 40px;
+    font-size: 47px;
     margin-bottom: 5px;
 }
 
 .welcome p {
     color: #AFD7A8;
-    font-size: 17px;
+    font-size: 19px;
     font-weight: 300;
 }
 
@@ -125,5 +126,5 @@ a.active {
 
 .content {
     grid-area: content;
-    padding: 40px;
+    padding: 40px 70px 40px 40px;
 }

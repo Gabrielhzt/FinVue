@@ -1,0 +1,160 @@
+.info-top {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 70px;
+}
+
+.green {
+   background-color: #41B92D;
+   color: #fff;
+   padding: 15px;
+   border-radius: 10px;
+   width: 270px;
+   display: flex;
+   flex-direction: column;
+   gap: 30px;
+}
+
+.flex-2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.grow {
+    background-color: #fff;
+    color: #41B92D;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+.grow-2 {
+    background-color: #41B92D;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+.grey {
+    background-color: #F4F4F4;
+    color: #000;
+    padding: 15px;
+    border-radius: 10px;
+    width: 270px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.grey-2 {
+    background-color: #F4F4F4;
+    color: #000;
+    padding: 15px;
+    border-radius: 10px;
+    width: 270px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.chart-title {
+    font-size: 13px;
+    font-weight: 300;
+    color: #E2FFE9;
+    margin-bottom: 5px;
+}
+
+.chart-title-2 {
+    font-size: 13px;
+    font-weight: 300;
+    color: #878787;
+    margin-bottom: 5px;
+}
+
+.chart-info {
+    font-size: 27px;
+}
+
+.description {
+    font-size: 14px;
+}
+
+.balance {
+    color: #41B92D;
+    font-size: 30px;
+}
+
+/* Content */
+
+.chart-title-3 {
+    color: #878787;
+}
+
+.info-chart {
+    margin-bottom: 30px;
+}
+
+.info-chart h2 {
+    font-size: 30px;
+    margin-top: 5px;
+}
+
+.flex-3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/* Members Info */
+
+.members-info {
+    background-color: #F4F4F4;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+    width: 250px;
+    border-radius: 10px;
+}
+
+.title-info-members {
+    color: #767676;
+    font-size: 14px;
+    font-weight: 300;
+    margin-bottom: 5px;
+}
+
+.pers-total {
+    font-size: 27px;
+}
+
+.other-members h4 {
+    font-size: 17px;
+    margin-bottom: 20px;
+}
+
+.other-profile {
+    display: flex;
+    gap: 5px;
+}
+
+.profile-img-2 {
+    background-color: #41B92D;
+    width: 15px;
+    height: 15px;
+    border-radius: 20px;
+    margin-top: 1px;
+}
+
+.other-members p {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
