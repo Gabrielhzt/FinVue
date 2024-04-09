@@ -4,6 +4,8 @@ import BarChart from "../Chart/Chart";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowTrendUp } from '@fortawesome/free-solid-svg-icons';
 import BigChart from "../Chart/BigChart/BigChart";
+import IncomeChart from "../Components/IncomeChart/IncomeChart";
+import ExpensesChart from "../Components/ExpensesChart/ExpensesChart";
 
 const Dashboard = () => {
 
@@ -20,32 +22,8 @@ const Dashboard = () => {
     return (
         <div>
             <div className="info-top">
-                <div className="green">
-                    <div className="flex-2">
-                        <div>
-                            <h5 className="chart-title">Income</h5>
-                            <h2 className="chart-info">$32,162</h2>
-                        </div>
-                        <div className="grow">
-                            <FontAwesomeIcon icon={faArrowTrendUp} />
-                            <p>34%</p>
-                        </div>
-                    </div>
-                    <BarChart data={data} color={'#fff'} width={100} height={1000} barSpacing={10} />
-                </div>
-                <div className="grey">
-                    <div className="flex-2">
-                        <div>
-                            <h5 className="chart-title-2">Expenses</h5>
-                            <h2>$4,162</h2>
-                        </div>
-                        <div className="grow-2">
-                            <FontAwesomeIcon icon={faArrowTrendUp} />
-                            <p>34%</p>
-                        </div>
-                    </div>
-                    <BarChart data={data} color={'#41B92D'} />
-                </div>
+                <IncomeChart data={data} />
+                <ExpensesChart data={data} />
                 <div className="grey-2">
                     <div>
                         <h5 className="chart-title-2">Financial Health Overview</h5>
