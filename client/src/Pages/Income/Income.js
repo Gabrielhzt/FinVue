@@ -1,8 +1,8 @@
 import React from "react";
 import './Income.css';
-import IncomeChart from "../Components/IncomeChart/IncomeChart";
-import PieChart from "../Chart/PieChart/PieChart";
-import Table from "../Components/Table/Table";
+import IncomeChart from "../../Components/IncomeChart/IncomeChart";
+import PieChart from "../../Chart/PieChart/PieChart";
+import Table from "../../Components/Table/Table";
 
 const Income = () => {
 

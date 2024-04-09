@@ -1,9 +1,9 @@
 import React from "react";
 import './Dashboard.css';
-import BarChart from "../Chart/Chart";
-import BigChart from "../Chart/BigChart/BigChart";
-import IncomeChart from "../Components/IncomeChart/IncomeChart";
-import ExpensesChart from "../Components/ExpensesChart/ExpensesChart";
+import BarChart from "../../Chart/Chart";
+import BigChart from "../../Chart/BigChart/BigChart";
+import IncomeChart from "../../Components/IncomeChart/IncomeChart";
+import ExpensesChart from "../../Components/ExpensesChart/ExpensesChart";
 
 const Dashboard = () => {
 
