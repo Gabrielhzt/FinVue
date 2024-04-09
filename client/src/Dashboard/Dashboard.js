@@ -1,8 +1,6 @@
 import React from "react";
 import './Dashboard.css';
 import BarChart from "../Chart/Chart";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowTrendUp } from '@fortawesome/free-solid-svg-icons';
 import BigChart from "../Chart/BigChart/BigChart";
 import IncomeChart from "../Components/IncomeChart/IncomeChart";
 import ExpensesChart from "../Components/ExpensesChart/ExpensesChart";

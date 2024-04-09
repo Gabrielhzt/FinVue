@@ -20,7 +20,7 @@ const Nav = () => {
                         <NavLink to={'/income'} className="nav-link">
                             <li className="flex">
                                 <FontAwesomeIcon icon={faSackDollar}  />
-                                <p>Income</p>
+                                <p>Incomes</p>
                             </li>
                         </NavLink>
                         <NavLink to={'/expenses'} className="nav-link">
