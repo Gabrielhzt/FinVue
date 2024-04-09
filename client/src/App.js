@@ -5,6 +5,7 @@ import Nav from './Nav/Nav';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import Income from './Pages/Income/Income';
 import Expenses from './Pages/Expenses/Expenses';
+import Members from './Pages/Members/Members';
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
           <Route path='/' element={<Dashboard />} />
           <Route path='/income' element={<Income />} />
           <Route path='/expenses' element={<Expenses />} />
+          <Route path='/members' element={<Members />} />
         </Route>
       </Routes>
     </Router>

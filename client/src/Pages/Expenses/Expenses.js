@@ -1,7 +1,6 @@
 import React from "react";
 import PieChart from "../../Chart/PieChart/PieChart";
 import ExpensesChart from "../../Components/ExpensesChart/ExpensesChart";
-import { Colors } from "chart.js";
 import Table from "../../Components/Table/Table";
 
 const Expenses = () => {
