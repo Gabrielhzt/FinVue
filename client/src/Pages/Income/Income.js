@@ -3,6 +3,7 @@ import './Income.css';
 import IncomeChart from "../../Components/IncomeChart/IncomeChart";
 import PieChart from "../../Chart/PieChart/PieChart";
 import Table from "../../Components/Table/Table";
+import { Link, Outlet } from "react-router-dom";
 
 const Income = () => {
 
@@ -38,10 +39,13 @@ const Income = () => {
                     <h2>Incomes</h2>
                     <div className="flex-3">
                         <button className="filter-btn">Filter</button>
-                        <button className="btn-2">Add Incomes</button>
+                        <Link to={'./add'}><button className="btn-2">Add Incomes</button></Link>
                     </div>
                 </div>
                 <Table />
+            </div>
+            <div className="Add">
+                <Outlet />
             </div>
         </div>
     )

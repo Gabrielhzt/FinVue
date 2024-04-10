@@ -1,25 +1,37 @@
 .grid {
     display: grid;
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: 250px 5fr;
     grid-template-areas: 
     "nav content";
 }
 
 /* Nav */
 
-nav {
+.big {
+    position: fixed;
     grid-area: nav;
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    margin-left: 50px;
+    background-color: #fff;
+}
+
+.big-2 {
+    display: none;
+}
+
+.little {
+    display: none;
 }
 
 .Title {
     font-size: 40px;
     margin: 40px 0px 60px;
     text-align: center;
+    color: #41B92D;
 }
 
 ul {
@@ -99,12 +111,13 @@ a.active .setting-icon {
     display: flex;
     align-items:flex-start;
     justify-content: space-between;
-    margin-bottom: 50px;
+    padding-bottom: 50px;
+
 }
 
 .welcome h1 {
     font-size: 47px;
-    margin-bottom: 5px;
+    padding: 5px;
 }
 
 .welcome p {
@@ -116,7 +129,7 @@ a.active .setting-icon {
 .head-btn {
     display: flex;
     gap: 15px;
-    margin-top: 12px;
+    padding: 12px 0;
 }
 
 .btn-2 {
@@ -132,4 +145,72 @@ a.active .setting-icon {
 .content {
     grid-area: content;
     padding: 40px 70px 40px 40px;
+}
+
+@media (max-width: 1390px) {
+
+    .grid {
+        display: grid;
+        grid-template-columns: 30px 5fr;
+        grid-template-areas: 
+        "nav content";
+    }
+
+    .big {
+        display: none !important;
+    }
+
+    .big-2 {
+        position: fixed;
+        grid-area: nav;
+        height: 100vh;
+        display: flex !important;
+        align-items: center;
+        background-color: #fff;
+        width: 250px;
+        border-radius: 10px;
+        z-index: 1000;
+        padding: 10px;
+    }
+
+    .little {
+        display: flex !important;
+        position: fixed;
+        grid-area: nav;
+        height: 100vh;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 20px;
+    }
+
+    .btn-5 {
+        background-color: #41B92D;
+        color: #fff;
+        padding: 20px 5px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .Add-2 {
+        position: fixed;
+        top: 0;
+        left: 230px;
+        width: 150vh;
+        height: 100vh;
+        background-color: #0000003a;
+    }
+
+    .column {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        height: 100vh;
+        width: 100%;
+    }
+
+    .content-2 {
+        padding: 40px 70px 40px 70px;
+    }
 }

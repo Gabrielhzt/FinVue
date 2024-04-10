@@ -2,6 +2,7 @@ import React from "react";
 import PieChart from "../../Chart/PieChart/PieChart";
 import ExpensesChart from "../../Components/ExpensesChart/ExpensesChart";
 import Table from "../../Components/Table/Table";
+import { Link, Outlet } from "react-router-dom";
 
 const Expenses = () => {
 
@@ -37,10 +38,13 @@ const Expenses = () => {
                     <h2>Expenses</h2>
                     <div className="flex-3">
                         <button className="filter-btn">Filter</button>
-                        <button className="btn-2">Add Expenses</button>
+                        <Link to={'./add'}><button className="btn-2">Add Expenses</button></Link>
                     </div>
                 </div>
                 <Table />
+            </div>
+            <div className="Add">
+                <Outlet />
             </div>
         </div>
     )

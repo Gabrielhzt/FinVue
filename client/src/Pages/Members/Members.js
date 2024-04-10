@@ -4,6 +4,7 @@ import Table from "../../Components/Table/Table";
 import BarChart from "../../Chart/Chart";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowTrendUp } from '@fortawesome/free-solid-svg-icons';
+import { Link, Outlet } from "react-router-dom";
 
 const Members = () => {
 
@@ -51,10 +52,13 @@ const Members = () => {
                     <h2>Members</h2>
                     <div className="flex-3">
                         <button className="filter-btn">Filter</button>
-                        <button className="btn-2">Add Members</button>
+                        <Link to={'./add'}><button className="btn-2">Add Members</button></Link>
                     </div>
                 </div>
                 <Table />
+            </div>
+            <div className="Add">
+                <Outlet />
             </div>
         </div>
     )

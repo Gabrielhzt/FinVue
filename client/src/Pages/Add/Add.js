@@ -1,31 +1,42 @@
 import React, { useState } from "react";
 import './Add.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { Link, useLocation } from "react-router-dom";
 
 const Add = () => {
+    const location = useLocation();
     const [selectedOption, setSelectedOption] = useState('');
 
     const handleChange = event => {
         setSelectedOption(event.target.value);
+    };
+
+    const handleBackClick = () => {
+        const currentPath = location.pathname;
+        const newPath = currentPath.replace('/add', '');
+        return newPath;
     };
     
     return (
         <div className="add">
             <form>
                 <div className="title-add">
-                    <label>Add </label>
-                        <select
-                            id="select-option"
-                            value={selectedOption}
-                            onChange={handleChange}
-                            className="select"
-                        >
-                        <option value="" className="green-title">Select an option</option>
-                        <option value="option1" className="green-title">Income</option>
-                        <option value="option2" className="green-title">Expenses</option>
-                        <option value="option3" className="green-title">Member</option>
-                    </select>
+                    <div className="flex-5">
+                        <label>Add </label>
+                            <select
+                                id="select-option"
+                                value={selectedOption}
+                                onChange={handleChange}
+                                className="select"
+                            >
+                            <option value="" className="green-title">Select an option</option>
+                            <option value="option1" className="green-title">Income</option>
+                            <option value="option2" className="green-title">Expenses</option>
+                            <option value="option3" className="green-title">Member</option>
+                        </select>
+                    </div>
+                    <Link to={handleBackClick()}><FontAwesomeIcon icon={faXmark} className="back" /></Link>
                 </div>
                 <br />
                 <div className="all-input">
