@@ -6,6 +6,7 @@ import Dashboard from './Pages/Dashboard/Dashboard';
 import Income from './Pages/Income/Income';
 import Expenses from './Pages/Expenses/Expenses';
 import Members from './Pages/Members/Members';
+import Settings from './Pages/Settings/Settings';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
           <Route path='/income' element={<Income />} />
           <Route path='/expenses' element={<Expenses />} />
           <Route path='/members' element={<Members />} />
+          <Route path='/settings' element={<Settings />} />
         </Route>
       </Routes>
     </Router>
