@@ -40,6 +40,10 @@ a.active {
     border-radius: 5px;
 }
 
+a.active .setting-icon {
+    color: #fff;
+}
+
 .flex  {
     list-style: none;
     display: flex;

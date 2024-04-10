@@ -1,0 +1,45 @@
+.Title-2 {
+    color: #41B92D;
+    font-size: 35px;
+    padding: 20px 40px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    margin-top: 120px;
+}
+
+.title-register {
+    margin-bottom: 60px;
+    font-size: 30px;
+}
+
+.register {
+    border: 1.5px solid #41B92D;
+    border-radius: 5px;
+    padding: 40px 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.label {
+    margin-bottom: 20px;
+}
+
+.input {
+    border: 1.5px solid #41B92D;
+    border-radius: 5px;
+    font-size: 17px;
+    font-weight: 300;
+    padding: 5px 10px;
+    width: 250px;
+    margin: 10px 0;
+}
+
+.center-2 {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}

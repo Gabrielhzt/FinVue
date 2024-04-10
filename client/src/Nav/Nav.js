@@ -42,7 +42,7 @@ const Nav = () => {
                     <h2>Gabriel Hazout</h2>
                     <p>hazout26@gmail.com</p>
                     <div className="group-btn">
-                        <NavLink to={'/settings'}><button className="btn"><FontAwesomeIcon icon={faGear} size="lg" /></button></NavLink>
+                        <NavLink to={'/settings'}><button className="btn"><FontAwesomeIcon icon={faGear} size="lg" className="setting-icon" /></button></NavLink>
                         <button className="btn"><FontAwesomeIcon icon={faArrowRightFromBracket} size="lg" /></button>
                     </div>
                 </div>
