@@ -8,6 +8,7 @@ import Expenses from './Pages/Expenses/Expenses';
 import Members from './Pages/Members/Members';
 import Settings from './Pages/Settings/Settings';
 import Register from './Pages/Register/Register';
+import Login from './Pages/Login/Login';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
           <Route path='/settings' element={<Settings />} />
         </Route>
         <Route path='/register' element={<Register />} />
+        <Route path='/login' element={<Login />} />
       </Routes>
     </Router>
   );
