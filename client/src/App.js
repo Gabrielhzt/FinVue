@@ -9,13 +9,16 @@ import Members from './Pages/Members/Members';
 import Settings from './Pages/Settings/Settings';
 import Register from './Pages/Register/Register';
 import Login from './Pages/Login/Login';
+import Add from './Pages/Add/Add';
 
 const App = () => {
   return (
     <Router>
       <Routes>
         <Route path='/' element={<Nav />}>
-          <Route path='/' element={<Dashboard />} />
+          <Route path='/' element={<Dashboard />} >
+            <Route path='/add' element={<Add />} />
+          </Route>
           <Route path='/income' element={<Income />} />
           <Route path='/expenses' element={<Expenses />} />
           <Route path='/members' element={<Members />} />
