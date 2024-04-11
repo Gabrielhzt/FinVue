@@ -1,4 +1,44 @@
 .graph-2 {
-    width: 710px !important;
-    height: 300px !important;
+    width: 610px !important;
+    height: 280px !important;
+}
+
+
+@media (max-width: 1390px) {
+
+    .graph-2 {
+        height: 240px !important;
+    }
+}
+
+@media (max-width: 1070px) {
+
+    .graph-2 {
+        width: 600px !important;
+        height: 300px !important;
+    }
+}
+
+@media (max-width: 780px) {
+
+    .graph-2 {
+        width: 440px !important;
+        height: 220px !important;
+    }
+}
+
+@media (max-width: 415px) {
+
+    .graph-2 {
+        width: 350px !important;
+        height: 170px !important;
+    }
+}
+
+@media (max-width: 375px) {
+
+    .graph-2 {
+        width: 310px !important;
+        height: 150px !important;
+    }
 }

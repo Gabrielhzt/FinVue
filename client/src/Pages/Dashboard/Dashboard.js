@@ -19,6 +19,10 @@ const Dashboard = () => {
 
     return (
         <div>
+            <div className="welc-3">
+                <h1>Expense Tracker</h1>
+                <p>Welcome, Gabriel!</p>
+            </div>
             <div className="info-top">
                 <IncomeChart data={data} />
                 <ExpensesChart data={data} />
@@ -30,7 +34,7 @@ const Dashboard = () => {
                     <h2 className="balance">Stable</h2>
                 </div>
             </div>
-            <div className="flex-3">
+            <div className="flex-6">
                 <div>
                     <div className="info-chart">
                         <p className="chart-title-3">Total Funds</p>

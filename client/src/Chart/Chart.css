@@ -2,3 +2,11 @@
     width: 220px !important;
     height: 60px !important;
 }
+
+@media (max-width: 430px) {
+
+    .graph {
+        width: 180px !important;
+        height: 40px !important;
+    }
+}

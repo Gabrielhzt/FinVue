@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import './Nav.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight, faChevronLeft, faChartPie, faSackDollar, faReceipt, faUsers, faGear, faArrowRightFromBracket, faMagnifyingGlass, faBell } from '@fortawesome/free-solid-svg-icons';
+import { faChevronRight, faChevronLeft, faBars, faChartPie, faSackDollar, faReceipt, faUsers, faGear, faArrowRightFromBracket, faMagnifyingGlass, faBell } from '@fortawesome/free-solid-svg-icons';
 import { NavLink, Outlet } from "react-router-dom";
 
 const Nav = () => {
@@ -9,7 +9,7 @@ const Nav = () => {
 
     useEffect(() => {
         const handleResize = () => {
-          if (window.innerWidth >= 1390) { // Changer 600 avec la largeur souhaitée
+          if (window.innerWidth >= 1390) {
             setOpen(false);
           }
         };
@@ -116,17 +116,19 @@ const Nav = () => {
                     <button className="btn-5" onClick={handleOpen}><FontAwesomeIcon icon={faChevronRight} size="2xl" /></button>
                 </nav>
             )}
-            <div className={open ? ("content-2"):("content")}>
+            <div className="content">
                 <div className="welcome">
-                    <div>
+                    <div className="welc-2">
                         <h1>Expense Tracker</h1>
                         <p>Welcome, Gabriel!</p>
                     </div>
+                    <h1 className="Title-2">FinVue</h1>
                     <div className="head-btn">
                         <button className="btn"><FontAwesomeIcon icon={faMagnifyingGlass} size="xl" /></button>
                         <button className="btn"><FontAwesomeIcon icon={faBell} size="xl" /></button>
                         <button className="btn-2">Members</button>
                     </div>
+                    <FontAwesomeIcon icon={faBars} size="2xl" className="bars" onClick={handleOpen} />
                 </div>
                 <div className="all">
                     <Outlet />

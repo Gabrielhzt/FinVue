@@ -7,6 +7,14 @@
 
 /* Nav */
 
+.bars {
+    display: none;
+}
+
+.Title-2 {
+    display: none ;
+}
+
 .big {
     position: fixed;
     grid-area: nav;
@@ -112,7 +120,10 @@ a.active .setting-icon {
     align-items:flex-start;
     justify-content: space-between;
     padding-bottom: 50px;
+}
 
+.welc-3 {
+    display: none;
 }
 
 .welcome h1 {
@@ -144,16 +155,13 @@ a.active .setting-icon {
 
 .content {
     grid-area: content;
-    padding: 40px 70px 40px 40px;
+    padding: 40px 70px 40px 70px;
 }
 
 @media (max-width: 1390px) {
 
     .grid {
-        display: grid;
-        grid-template-columns: 30px 5fr;
-        grid-template-areas: 
-        "nav content";
+        display: inline;
     }
 
     .big {
@@ -209,8 +217,76 @@ a.active .setting-icon {
         height: 100vh;
         width: 100%;
     }
+}
 
-    .content-2 {
-        padding: 40px 70px 40px 70px;
+@media (max-width: 800px) {
+
+    .welcome h1 {
+        font-size: 40px;
+        padding-top: 15px;
+        padding: 10px 0 5px;
+    }
+
+    .head-btn {
+        display: none;
+    }
+
+    .little {
+        display: none !important;
+    }
+
+    .welcome {
+        align-items: center;
+    }
+
+    .bars {
+        display: flex;
+        color: #000;
+        cursor: pointer;
+    }
+
+    .content {
+        padding: 40px;
+    }
+}
+
+@media (max-width: 430px) {
+
+    .content {
+        padding: 30px;
+    }
+
+    .welcome {
+        padding-bottom: 40px;
+    }
+
+    .welcome h1 {
+        font-size: 38px;
+        padding: 10px 0 5px;
+    }
+
+    .Title-2 {
+        display: flex;
+    }
+
+    .welc-2 {
+        display: none;
+    }
+
+    .welc-3 {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin-bottom:  30px;
+    }
+
+    .welc-3 {
+        font-size: 16px;
+    }
+
+    .welc-3 p {
+        color: #AFD7A8;
+        font-size: 19px;
+        font-weight: 300;
     }
 }

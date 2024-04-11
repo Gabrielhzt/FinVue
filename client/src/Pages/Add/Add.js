@@ -19,7 +19,8 @@ const Add = () => {
     };
     
     return (
-        <div className="add">
+        <div className="Add">
+            <div className="add">
             <form>
                 <div className="title-add">
                     <div className="flex-5">
@@ -72,6 +73,7 @@ const Add = () => {
                     <button type="submit" className="btn-4">Add</button>
                 </div>
             </form>
+        </div>
         </div>
     )
 }

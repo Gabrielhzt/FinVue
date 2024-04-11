@@ -1,6 +1,9 @@
+.all-table {
+    overflow-y: scroll;
+}
+
 table {
     border-collapse: collapse;
-    width: 100%;
 }
 
 table th,
@@ -19,4 +22,11 @@ table th {
     background-color: #fff;
     padding: 5px;
     cursor: pointer;
+}
+
+@media (max-width: 1390px) {
+
+    table {
+        width: 1100px;
+    }
 }

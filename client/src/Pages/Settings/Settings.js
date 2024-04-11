@@ -12,8 +12,9 @@ const Settings = () => {
                         <p>Modify your displayed name within the application.</p>
                         <button className="settings-btn">Update</button>
                     </div>
-                    <div>
+                    <div className="both">
                         <h3>Gabriel Hazout</h3>
+                        <button className="settings-btn-2">Update</button>
                     </div>
                 </div>
                 <div className="flex-4">
@@ -22,8 +23,9 @@ const Settings = () => {
                         <p>Change the email address associated with your account.</p>
                         <button className="settings-btn">Update</button>
                     </div>
-                    <div>
+                    <div className="both">
                         <h3>hazout26@gmail.com</h3>
+                        <button className="settings-btn-2">Update</button>
                     </div>
                 </div>
                 <div className="flex-4">
@@ -32,8 +34,9 @@ const Settings = () => {
                         <p>Change your account password for improved security.</p>
                         <button className="settings-btn">Update</button>
                     </div>
-                    <div>
+                    <div className="both">
                         <h3>******</h3>
+                        <button className="settings-btn-2">Update</button>
                     </div>
                 </div>
             </div>

@@ -12,28 +12,30 @@ const Table = () => {
     ];
 
     return (
-        <table>
-            <thead>
-                <tr className="table-title">
-                    <th>Type</th>
-                    <th>Title</th>
-                    <th>Amount</th>
-                    <th>Date/Periode</th>
-                    <th>Update</th>
-                </tr>
-            </thead>
-            <tbody>
-                {data_2.map((item, index) => (
-                <tr key={index} className="table-element">
-                    <td>{item.type}</td>
-                    <td>{item.title}</td>
-                    <td>{item.amount}</td>
-                    <td>{item.date}</td>
-                    <td><button className="update-btn"><FontAwesomeIcon icon={faPenToSquare} size="lg" /></button></td>
-                </tr>
-                ))}
-            </tbody>
-        </table>
+        <div className="all-table">
+            <table>
+                <thead>
+                    <tr className="table-title">
+                        <th>Type</th>
+                        <th>Title</th>
+                        <th>Amount</th>
+                        <th>Date/Periode</th>
+                        <th>Update</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {data_2.map((item, index) => (
+                    <tr key={index} className="table-element">
+                        <td>{item.type}</td>
+                        <td>{item.title}</td>
+                        <td>{item.amount}</td>
+                        <td>{item.date}</td>
+                        <td><button className="update-btn"><FontAwesomeIcon icon={faPenToSquare} size="lg" /></button></td>
+                    </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
     )
 }
 
