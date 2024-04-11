@@ -2,6 +2,8 @@ import React from "react";
 import PieChart from "../../Chart/PieChart/PieChart";
 import ExpensesChart from "../../Components/ExpensesChart/ExpensesChart";
 import Table from "../../Components/Table/Table";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Link, Outlet } from "react-router-dom";
 
 const Expenses = () => {
@@ -38,7 +40,8 @@ const Expenses = () => {
                     <h2>Expenses</h2>
                     <div className="flex-3">
                         <button className="filter-btn">Filter</button>
-                        <Link to={'./add'}><button className="btn-2">Add Expenses</button></Link>
+                        <Link to={'./add'}><button className="btn-3">Add Incomes</button></Link>
+                        <Link to={'./add'}><FontAwesomeIcon icon={faPlus} className="btn-4" /></Link>
                     </div>
                 </div>
                 <Table />

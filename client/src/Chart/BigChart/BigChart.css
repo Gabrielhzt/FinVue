@@ -19,11 +19,35 @@
     }
 }
 
+@media (max-width: 1024px) {
+    
+    .graph-2 {
+        width: 400px !important;
+        height: 200px !important;
+    }
+}
+
 @media (max-width: 780px) {
 
     .graph-2 {
-        width: 440px !important;
+        width: 420px !important;
         height: 220px !important;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .graph-2 {
+        width: 400px !important;
+        height: 200px !important;
+    }
+}
+
+@media (max-width: 430px) {
+
+    .graph-2 {
+        width: 370px !important;
+        height: 190px !important;
     }
 }
 
