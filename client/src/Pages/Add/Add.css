@@ -35,7 +35,7 @@ form {
 
 .select {
     color: #41B92D;
-    font-size: 200px;
+    font-size: 20px;
     width: 140px;
 }
 
@@ -78,5 +78,33 @@ form {
     border-radius: 5px;
     margin-top: 20px;
     cursor: pointer;
+}
+
+@media (max-width: 430px) {
+
+    .title-add {
+        font-size: 24px;
+    }
+
+    .select {
+        font-size: 18px;
+        width: 160px;
+    }    
+    
+    form {
+        padding: 30px;
+        width: 280px;
+        height: 380px;
+    }
+
+    .input-2 {
+        font-size: 14px;
+        width: 220px;
+    }
+    
+    .input-3 {
+        font-size: 14px;
+        width: 205px;
+    }
 }
 

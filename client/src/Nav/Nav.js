@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import './Nav.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight, faChevronLeft, faBars, faChartPie, faSackDollar, faReceipt, faUsers, faGear, faArrowRightFromBracket, faMagnifyingGlass, faBell } from '@fortawesome/free-solid-svg-icons';
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Link, Outlet } from "react-router-dom";
 
 const Nav = () => {
     const [open, setOpen] = useState(false);
@@ -122,7 +122,7 @@ const Nav = () => {
                         <h1>Expense Tracker</h1>
                         <p>Welcome, Gabriel!</p>
                     </div>
-                    <h1 className="Title-2">FinVue</h1>
+                    <Link className="none" to={'/'}><h1 className="Title-2">FinVue</h1></Link>
                     <div className="head-btn">
                         <button className="btn"><FontAwesomeIcon icon={faMagnifyingGlass} size="xl" /></button>
                         <button className="btn"><FontAwesomeIcon icon={faBell} size="xl" /></button>

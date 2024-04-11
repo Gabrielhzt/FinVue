@@ -269,6 +269,10 @@ a.active .setting-icon {
         display: flex;
     }
 
+    .none {
+        text-decoration: none;
+    }
+
     .welc-2 {
         display: none;
     }
