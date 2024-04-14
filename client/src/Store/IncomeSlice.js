@@ -14,9 +14,7 @@ const incomeSlice = createSlice({
         },
         updateIncome(state, action) {
             const { id, type, name, amount, date } = action.payload;
-            console.log(state.incomes)
             const existingIncome = state.incomes.find(income => income.id.toString() === id);
-            console.log(existingIncome)
             if (existingIncome) {
                 existingIncome.type = type;
                 existingIncome.name = name;

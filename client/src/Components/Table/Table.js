@@ -28,7 +28,7 @@ const Table = ({data_table = [], type}) => {
                 </thead>
                 {type === 'member' ? (
                     <tbody>
-                    {data_table.map((item, index) => (
+                    {data_table.map((item) => (
                     <tr key={item.id} className="table-element">
                         <td>{item.name}</td>
                         <td>${item.amount}</td>
@@ -38,7 +38,7 @@ const Table = ({data_table = [], type}) => {
                 </tbody>
                 ):(
                     <tbody>
-                    {data_table.map((item, index) => (
+                    {data_table.map((item) => (
                     <tr key={item.id} className="table-element">
                         <td>{item.type}</td>
                         <td>{item.name}</td>

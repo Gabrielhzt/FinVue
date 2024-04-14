@@ -14,9 +14,7 @@ const expenseSlice = createSlice({
         },
         updateExpense(state, action) {
             const { id, type, name, amount, date } = action.payload;
-            console.log(state.expenses)
             const existingExpense = state.expenses.find(expense => expense.id.toString() === id);
-            console.log(existingExpense)
             if (existingExpense) {
                 existingExpense.type = type;
                 existingExpense.name = name;

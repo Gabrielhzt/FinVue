@@ -37,7 +37,7 @@ const Nav = () => {
                                 <p>Dashboard</p>
                             </li>
                         </NavLink>
-                        <NavLink to={'/income'} className="nav-link">
+                        <NavLink to={'/incomes'} className="nav-link">
                             <li className="flex">
                                 <FontAwesomeIcon icon={faSackDollar}  />
                                 <p>Incomes</p>
