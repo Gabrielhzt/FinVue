@@ -27,6 +27,8 @@ table th {
 @media (max-width: 1390px) {
 
     table {
-        width: 1100px;
+        max-width: 1100px;
+        min-width: 700px;
+        min-height: 100px;
     }
 }

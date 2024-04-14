@@ -9,11 +9,12 @@ form {
     padding: 40px;
     border-radius: 10px;
     width: 350px;
-    height: 350px;
+    max-height: 415px;
 }
 
 .flex-5 {
     display: flex;
+    
     align-items: center;
     gap: 10px;
 }
@@ -69,7 +70,7 @@ form {
     margin-right: 5px;
 }
 
-.btn-4 {
+.btn-6 {
     background-color: #41B92D;
     color: #fff;
     padding: 5px 15px;
@@ -94,7 +95,7 @@ form {
     form {
         padding: 30px;
         width: 280px;
-        height: 380px;
+        max-height: 415px;
     }
 
     .input-2 {

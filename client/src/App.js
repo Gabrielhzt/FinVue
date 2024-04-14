@@ -10,9 +10,12 @@ import Settings from './Pages/Settings/Settings';
 import Register from './Pages/Register/Register';
 import Login from './Pages/Login/Login';
 import Add from './Pages/Add/Add';
+import { Provider } from 'react-redux';
+import { store } from './Store/Store';
 
 const App = () => {
   return (
+    <Provider store={store}>
     <Router>
       <Routes>
         <Route path='/' element={<Nav />}>
@@ -34,6 +37,7 @@ const App = () => {
         <Route path='/login' element={<Login />} />
       </Routes>
     </Router>
+    </Provider>
   );
 }
 

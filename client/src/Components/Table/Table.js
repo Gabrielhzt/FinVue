@@ -3,7 +3,7 @@ import './Table.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
-const Table = () => {
+const Table = ({data_table = [], type}) => {
 
     const data_2 = [
         { type: 'salary', title: 'My salary at my new job', amount: '35k', date: '25/02' },
@@ -15,6 +15,13 @@ const Table = () => {
         <div className="all-table">
             <table>
                 <thead>
+                    {type === 'member' ? (
+                    <tr className="table-title">
+                        <th>Name</th>
+                        <th>Amount</th>
+                        <th>Update</th>
+                    </tr>
+                    ):(
                     <tr className="table-title">
                         <th>Type</th>
                         <th>Title</th>
@@ -22,18 +29,31 @@ const Table = () => {
                         <th>Date/Periode</th>
                         <th>Update</th>
                     </tr>
+                    )}
                 </thead>
-                <tbody>
-                    {data_2.map((item, index) => (
+                {type === 'member' ? (
+                    <tbody>
+                    {data_table.map((item, index) => (
+                    <tr key={index} className="table-element">
+                        <td>{item.name}</td>
+                        <td>${item.amount}</td>
+                        <td><button className="update-btn"><FontAwesomeIcon icon={faPenToSquare} size="lg" /></button></td>
+                    </tr>
+                    ))}
+                </tbody>
+                ):(
+                    <tbody>
+                    {data_table.map((item, index) => (
                     <tr key={index} className="table-element">
                         <td>{item.type}</td>
-                        <td>{item.title}</td>
-                        <td>{item.amount}</td>
+                        <td>{item.name}</td>
+                        <td>${item.amount}</td>
                         <td>{item.date}</td>
                         <td><button className="update-btn"><FontAwesomeIcon icon={faPenToSquare} size="lg" /></button></td>
                     </tr>
                     ))}
                 </tbody>
+                )}
             </table>
         </div>
     )

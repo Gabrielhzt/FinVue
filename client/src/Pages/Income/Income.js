@@ -6,33 +6,34 @@ import Table from "../../Components/Table/Table";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Link, Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Income = () => {
+    const incomes = useSelector(state => state.incomes.incomes);
 
     const data = {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June'],
         values: [19, 8, 14, 10, 16, 19]
     };
+    
 
     return (
         <div>
             <div className="info-top">
                 <IncomeChart data={data} />
                 <div className="pie">
-                    <div>
-                        <h2 className="income-title">Income Distribution</h2>
-                        <p className="description">Visualize how your income is distributed among different categories or sources. Explore the pie chart below to understand the breakdown of your income.</p>
-                        <ul className="list">
-                            <li>
+                <div>
+                    <h2 className="income-title">Income Distribution</h2>
+                    <p className="description">Visualize how your income is distributed among different categories or sources. Explore the pie chart below to understand the breakdown of your income.</p>
+                    <ul className="list">
+                        {incomes.map(income => (
+                            <li key={income.id}>
                                 <div></div>
-                                <p>Salary</p>
+                                <p>{income.title}</p>
                             </li>
-                            <li>
-                                <div></div>
-                                <p>Salary</p>
-                            </li>
-                        </ul>
-                    </div>
+                        ))}
+                    </ul>
+                </div>
                     <PieChart data={data} />
                 </div>
             </div>
@@ -45,7 +46,7 @@ const Income = () => {
                         <Link to={'./add'}><FontAwesomeIcon icon={faPlus} className="btn-4" /></Link>
                     </div>
                 </div>
-                <Table />
+                <Table data_table={incomes} />
             </div>
             <div className="Add">
                 <Outlet />
