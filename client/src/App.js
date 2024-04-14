@@ -12,6 +12,7 @@ import Login from './Pages/Login/Login';
 import Add from './Pages/Add/Add';
 import { Provider } from 'react-redux';
 import { store } from './Store/Store';
+import Update from './Pages/Update/Update';
 
 const App = () => {
   return (
@@ -22,14 +23,17 @@ const App = () => {
           <Route path='/' element={<Dashboard />} >
             <Route path='add' element={<Add />} />
           </Route>
-          <Route path='/income' element={<Income />}>
-            <Route path='add' element={<Add />} />
+          <Route path='/incomes' element={<Income />}>
+            <Route path='add' element={<Add page={'income'} />} />
+            <Route path='update/:id' element={<Update page={'income'} />} />
           </Route>
           <Route path='/expenses' element={<Expenses />}>
-            <Route path='add' element={<Add />} />
+            <Route path='add' element={<Add page={'expense'} />} />
+            <Route path='update/:id' element={<Update page={'expense'} />} />
           </Route>
           <Route path='/members' element={<Members />}>
-            <Route path='add' element={<Add />} />
+            <Route path='add' element={<Add page={'member'} />} />
+            <Route path='update/:id' element={<Update page={'member'} />} />
           </Route>
           <Route path='/settings' element={<Settings />} />
         </Route>

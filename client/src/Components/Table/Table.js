@@ -2,14 +2,9 @@ import React from "react";
 import './Table.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { Link } from "react-router-dom";
 
 const Table = ({data_table = [], type}) => {
-
-    const data_2 = [
-        { type: 'salary', title: 'My salary at my new job', amount: '35k', date: '25/02' },
-        { type: 'crypto', title: 'bitcoin', amount: '70k', date: '15/07' },
-        { type: 'real estate', title: 'All my real estate', amount: '200k', date: '07/12' }
-    ];
 
     return (
         <div className="all-table">
@@ -34,22 +29,22 @@ const Table = ({data_table = [], type}) => {
                 {type === 'member' ? (
                     <tbody>
                     {data_table.map((item, index) => (
-                    <tr key={index} className="table-element">
+                    <tr key={item.id} className="table-element">
                         <td>{item.name}</td>
                         <td>${item.amount}</td>
-                        <td><button className="update-btn"><FontAwesomeIcon icon={faPenToSquare} size="lg" /></button></td>
+                        <td><Link to={`./update/${item.id}`}><button className="update-btn"><FontAwesomeIcon icon={faPenToSquare} size="lg" /></button></Link></td>
                     </tr>
                     ))}
                 </tbody>
                 ):(
                     <tbody>
                     {data_table.map((item, index) => (
-                    <tr key={index} className="table-element">
+                    <tr key={item.id} className="table-element">
                         <td>{item.type}</td>
                         <td>{item.name}</td>
                         <td>${item.amount}</td>
                         <td>{item.date}</td>
-                        <td><button className="update-btn"><FontAwesomeIcon icon={faPenToSquare} size="lg" /></button></td>
+                        <td><Link to={`./update/${item.id}`}><button className="update-btn"><FontAwesomeIcon icon={faPenToSquare} size="lg" /></button></Link></td>
                     </tr>
                     ))}
                 </tbody>

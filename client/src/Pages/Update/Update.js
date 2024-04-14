@@ -1,25 +1,53 @@
 import React, { useEffect, useState } from "react";
-import './Add.css';
+import '../Add/Add.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch } from 'react-redux';
-import { addIncome } from "../../Store/IncomeSlice";
-import { addExpense } from "../../Store/ExpenseSlice";
-import { addMember } from "../../Store/MemberSlice";
+import { useDispatch, useSelector } from 'react-redux';
+import { updateIncome } from "../../Store/IncomeSlice";
+import { updateExpense } from "../../Store/ExpenseSlice";
+import { updateMember } from "../../Store/MemberSlice";
 
-const Add = ({page}) => {
+const Update = ({page}) => {
     const navigate = useNavigate();
+    const { id } = useParams();
     const [type, setType] = useState('');
     const [name, setName] = useState('');
     const [amount, setAmount] = useState('');
     const [date, setDate] = useState('');
     const dispatch = useDispatch();
     const [selectedOption, setSelectedOption] = useState(page);
+    let state_;
+
+    if (page === "member") {
+        state_ = state => state.members.members;
+    } else if (page === "income") {
+        state_ = state => state.incomes.incomes;
+    } else if (page === "expense") {
+        state_ = state => state.expenses.expenses;
+    }
+
+    const items = useSelector(state_);
 
     useEffect(() => {
-        console.log(page)
-    }, [])
+        console.log(selectedOption)
+        console.log(items)
+        if (id && items) {
+            const selectedItem = items.find(item => item.id.toString() === id);
+            console.log(selectedItem)
+            if (selectedItem) {
+                if(selectedOption === 'member') {
+                    setName(selectedItem.name);
+                    setAmount(selectedItem.amount);
+                }else {
+                    setType(selectedItem.type);
+                    setName(selectedItem.name);
+                    setAmount(selectedItem.amount);
+                    setDate(selectedItem.date);
+                }
+            }
+        }
+    }, [id, items]);
 
     const handleChange = event => {
         setSelectedOption(event.target.value);
@@ -28,21 +56,22 @@ const Add = ({page}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if(selectedOption === "income") {
-            dispatch(addIncome({ type, name, amount, date }));
+            dispatch(updateIncome({ id, type, name, amount, date }));
             setType('')
             setName('');
             setAmount('');
             setDate('');
         }else if(selectedOption === "expense") {
-            dispatch(addExpense({ type, name, amount, date }));
+            dispatch(updateExpense({ id, type, name, amount, date }));
             setType('')
             setName('');
             setAmount('');
             setDate('');
         }else if (selectedOption === "member") {
-            dispatch(addMember({ name, amount }));
+            dispatch(updateMember({ id, name, amount }));
             setName('');
             setAmount('');
+            console.log(items)
         }else {
             console.log("o")
         }
@@ -54,7 +83,7 @@ const Add = ({page}) => {
             <form onSubmit={handleSubmit}>
                 <div className="title-add">
                     <div className="flex-5">
-                        <label>Add </label>
+                        <label>Update </label>
                             <select
                                 id="select-option"
                                 value={selectedOption}
@@ -145,7 +174,7 @@ const Add = ({page}) => {
                 </div>
                 )}
                 <div className="center-2">
-                    <button type="submit" className="btn-6">Add</button>
+                    <button type="submit" className="btn-6">Update</button>
                 </div>
             </form>
         </div>
@@ -153,4 +182,4 @@ const Add = ({page}) => {
     )
 }
 
-export default Add;
+export default Update;

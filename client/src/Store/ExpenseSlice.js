@@ -11,9 +11,21 @@ const expenseSlice = createSlice({
         addExpense(state, action) {
             const { type, name, amount, date } = action.payload;
             state.expenses.push({ id: Date.now(), type, name, amount, date });
+        },
+        updateExpense(state, action) {
+            const { id, type, name, amount, date } = action.payload;
+            console.log(state.expenses)
+            const existingExpense = state.expenses.find(expense => expense.id.toString() === id);
+            console.log(existingExpense)
+            if (existingExpense) {
+                existingExpense.type = type;
+                existingExpense.name = name;
+                existingExpense.amount = amount;
+                existingExpense.date = date;
+            }
         }
     }
 });
 
-export const { addExpense } = expenseSlice.actions;
+export const { addExpense, updateExpense } = expenseSlice.actions;
 export default expenseSlice.reducer;
