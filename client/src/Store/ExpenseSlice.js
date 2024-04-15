@@ -1,8 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    expenses: [],
-    availableIncomeTypes: []
+    expenses: []
 };
 
 const expenseSlice = createSlice({
@@ -12,9 +11,6 @@ const expenseSlice = createSlice({
         addExpense(state, action) {
             const { type, name, amount, date } = action.payload;
             state.expenses.push({ id: Date.now(), type, name, amount, date });
-            if (!state.availableIncomeTypes.includes(type)) {
-                state.availableIncomeTypes.push(type);
-            }
         },
         updateExpense(state, action) {
             const { id, type, name, amount, date } = action.payload;
