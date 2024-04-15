@@ -42,14 +42,11 @@ const Expenses = () => {
                         <h2 className="income-title">Expense Breakdown</h2>
                         <p className="description">Visualize your expenses with a pie chart breakdown by category to gain insights into your spending habits and identify areas for potential savings.</p>
                         <ul className="list">
-                            <li>
-                                <div></div>
-                                <p>Salary</p>
+                        {availableTypes.map(income => (
+                            <li key={income.id}>
+                                <p>{income}</p>
                             </li>
-                            <li>
-                                <div></div>
-                                <p>Salary</p>
-                            </li>
+                        ))}
                         </ul>
                     </div>
                     <PieChart data={data} />

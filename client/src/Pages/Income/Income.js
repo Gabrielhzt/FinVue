@@ -44,10 +44,9 @@ const Income = () => {
                         <h2 className="income-title">Income Distribution</h2>
                         <p className="description">Visualize how your income is distributed among different categories or sources. Explore the pie chart below to understand the breakdown of your income.</p>
                         <ul className="list">
-                            {filteredIncomes.map(income => (
-                                <li key={income.id}>
-                                    <div></div>
-                                    <p>{income.title}</p>
+                            {availableTypes.map((income, index) => (
+                                <li key={index}>
+                                    <p>{income}</p>
                                 </li>
                             ))}
                         </ul>
