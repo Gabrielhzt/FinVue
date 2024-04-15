@@ -5,7 +5,7 @@ const pool = require('../database');
 router.get('/', (req, res) => {
     const userId = req.user.user_id;
 
-    pool.query('SELECT * FROM incomes WHERE user_id = $1', [userId], (error, result) => {
+    pool.query('SELECT * FROM expenses WHERE user_id = $1', [userId], (error, result) => {
         if(error) {
             res.status(500).send('Error');
         }else {
@@ -18,9 +18,11 @@ router.post('/add', (req, res) => {
     const userId = req.user.user_id;
     const { type, title, amount, date, member } = req.body;
 
-    pool.query('INSERT INTO incomes (user_id, type, title, amount, date, member) VALUES ($1, $2, $3, $4, $5, $6)', [userId, type, title, amount, date, member], (error, result) => {
+    console.log(userId)
+
+    pool.query('INSERT INTO expenses (user_id, type, title, amount, date, member) VALUES ($1, $2, $3, $4, $5, $6)', [userId, type, title, amount, date, member], (error, result) => {
         if(error) {
-            res.status(500).send('Error adding income');
+            res.status(500).send('Error adding expense');
         }else {
             res.send('Added successfully')
         }
@@ -28,26 +30,26 @@ router.post('/add', (req, res) => {
 })
 
 router.put('/update/:incomeId', (req, res) => {
-    const { incomeId } = req.params;
+    const { expenseId } = req.params;
     const { type, title, amount, date, member } = req.body;
 
-    pool.query('UPDATE incomes SET type = $1, title = $2, amount = $3, date = $4, member = $5 WHERE income_id = $6', [type, title, amount, date, member, incomeId], (error, result) => {
+    pool.query('UPDATE expenses SET type = $1, title = $2, amount = $3, date = $4, member = $5 WHERE expense_id = $6', [type, title, amount, date, member, expenseId], (error, result) => {
         if(error) {
-            res.status(500).send('Error updating income');
+            res.status(500).send('Error updating expense');
         }else {
             res.send('Added successfully')
         }
     })
 })
 
-router.delete('/delete/:incomeId', (req, res) => {
-    const { incomeId } = req.params;
+router.delete('/delete/:expenseId', (req, res) => {
+    const { expenseId } = req.params;
 
-    pool.query('DELETE FROM incomes WHERE income_id = $1', [incomeId], (error, result) => {
+    pool.query('DELETE FROM expenses WHERE expense_id = $1', [expenseId], (error, result) => {
         if(error) {
-            res.status(500).send('Error deleting income');
+            res.status(500).send('Error deleting expense');
         }else {
-            res.send('Successfully deleting income')
+            res.send('Successfully deleting expense')
         }
     })
 })
@@ -55,7 +57,7 @@ router.delete('/delete/:incomeId', (req, res) => {
 router.get('/allfilter', (req, res) => {
     const userId = req.user.user_id;
 
-    pool.query('SELECT type, SUM(amount) AS total_amount FROM incomes WHERE user_id = $1 GROUP BY type', [userId], (error, result) => {
+    pool.query('SELECT type, SUM(amount) AS total_amount FROM expenses WHERE user_id = $1 GROUP BY type', [userId], (error, result) => {
         if(error) {
             res.status(500).send('Error');
         }else {
@@ -67,7 +69,7 @@ router.get('/allfilter', (req, res) => {
 router.get('/filter', (req, res) => {
     const { type } = req.body;
 
-    pool.query('SELECT * FROM incomes WHERE type = $1', [type], (error, result) => {
+    pool.query('SELECT * FROM expense WHERE type = $1', [type], (error, result) => {
         if(error) {
             res.status(500).send('Error');
         }else {
@@ -79,7 +81,7 @@ router.get('/filter', (req, res) => {
 router.get('/total', (req, res) => {
     const userId = req.user.user_id;
 
-    pool.query('SELECT EXTRACT(MONTH FROM date) AS month, SUM(amount) AS total_income FROM incomes WHERE user_id = $1 GROUP BY EXTRACT(MONTH FROM date) ORDER BY month;', [userId], (error, result) => {
+    pool.query('SELECT EXTRACT(MONTH FROM date) AS month, SUM(amount) AS total_expense FROM expenses WHERE user_id = $1 GROUP BY EXTRACT(MONTH FROM date) ORDER BY month;', [userId], (error, result) => {
         if(error) {
             res.status(500).send('Error')
         }else {
