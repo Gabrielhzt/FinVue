@@ -17,10 +17,6 @@ const Add = ({page}) => {
     const dispatch = useDispatch();
     const [selectedOption, setSelectedOption] = useState(page);
 
-    useEffect(() => {
-        console.log(page)
-    }, [])
-
     const handleChange = event => {
         setSelectedOption(event.target.value);
     };

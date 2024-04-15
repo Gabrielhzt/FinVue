@@ -30,11 +30,8 @@ const Update = ({page}) => {
     const items = useSelector(state_);
 
     useEffect(() => {
-        console.log(selectedOption)
-        console.log(items)
         if (id && items) {
             const selectedItem = items.find(item => item.id.toString() === id);
-            console.log(selectedItem)
             if (selectedItem) {
                 if(selectedOption === 'member') {
                     setName(selectedItem.name);
@@ -71,9 +68,8 @@ const Update = ({page}) => {
             dispatch(updateMember({ id, name, amount }));
             setName('');
             setAmount('');
-            console.log(items)
         }else {
-            console.log("o")
+            console.log("error")
         }
     };
     

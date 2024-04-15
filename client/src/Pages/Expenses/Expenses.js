@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PieChart from "../../Chart/PieChart/PieChart";
 import ExpensesChart from "../../Components/ExpensesChart/ExpensesChart";
 import Table from "../../Components/Table/Table";
@@ -6,9 +6,27 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Link, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Filter from "../Filter/Filter";
 
 const Expenses = () => {
     const expenses = useSelector(state => state.expenses.expenses);
+    const [filterValue, setFilterValue] = useState("");
+    const [filteredExpenses, setFilteredExpenses] = useState(expenses);
+    const [availableTypes, setAvailableTypes] = useState([]);
+
+    useEffect(() => {
+        setAvailableTypes([...new Set(expenses.map(expense => expense.type))]);
+    }, [expenses]);
+
+    useEffect(() => {
+        const filtered = expenses.filter(income => {
+            if (!filterValue) {
+                return true;
+            }
+            return income.type === filterValue;
+        });
+        setFilteredExpenses(filtered);
+    }, [filterValue, expenses]);
 
     const data = {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June'],
@@ -41,12 +59,16 @@ const Expenses = () => {
                 <div className="income-title-2">
                     <h2>Expenses</h2>
                     <div className="flex-3">
-                        <button className="filter-btn">Filter</button>
+                        <Filter 
+                            availableTypes={availableTypes}
+                            filterValue={filterValue}
+                            setFilterValue={setFilterValue}
+                        />
                         <Link to={'./add'}><button className="btn-3">Add Expenses</button></Link>
                         <Link to={'./add'}><FontAwesomeIcon icon={faPlus} className="btn-4" /></Link>
                     </div>
                 </div>
-                <Table data_table={expenses} />
+                <Table data_table={filteredExpenses} />
             </div>
             <div className="Add">
                 <Outlet />
