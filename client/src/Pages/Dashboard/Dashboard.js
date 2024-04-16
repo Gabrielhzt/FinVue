@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './Dashboard.css';
 import BigChart from "../../Chart/BigChart/BigChart";
 import IncomeChart from "../../Components/IncomeChart/IncomeChart";
 import ExpensesChart from "../../Components/ExpensesChart/ExpensesChart";
 import { Outlet } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUserProfile, selectUser, selectError, selectStatus } from '../../Store/ProfileSlice';
 
 const Dashboard = () => {
+    const dispatch = useDispatch();
+    const userProfile = useSelector(selectUser);
+    const status = useSelector(selectStatus);
+    const error = useSelector(selectError);
 
+    useEffect(() => {
+        dispatch(fetchUserProfile());
+    }, [dispatch]);
+  
     const data = {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June'],
         values: [19, 8, 14, 10, 16, 19]
@@ -21,7 +31,9 @@ const Dashboard = () => {
         <div>
             <div className="welc-3">
                 <h1>Expense Tracker</h1>
-                <p>Welcome, Gabriel!</p>
+                {status === 'succeeded' && <p>Welcome, {userProfile.full_name}!</p>}
+                {status === 'loading' && <p>Loading...</p>}
+                {status === 'failed' && <p>Error: {error}</p>}
             </div>
             <div className="info-top">
                 <IncomeChart data={data} />
