@@ -3,8 +3,13 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const pool = require('../database');
 const jwt = require('jsonwebtoken');
+const passport = require('passport');
 
 require('../passport/auth_jwt');
+
+router.get('/verify', passport.authenticate('jwt', { session: false }), (req, res) => {
+    res.status(200).send('Authenticated');
+});
 
 router.post('/register', async (req, res) => {
     const { fullname, email, password } = req.body;
