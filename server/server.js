@@ -8,6 +8,7 @@ const authRoutes = require('./Routes/auth');
 const incomesRoutes = require('./Routes/incomes');
 const expensesRoutes = require('./Routes/expenses');
 const membersRoutes = require('./Routes/members');
+const profileRoutes = require('./Routes/profile');
 const passport = require('passport');
 
 app.use(cors());
@@ -19,6 +20,7 @@ app.use('/auth', authRoutes);
 app.use('/incomes', passport.authenticate('jwt', { session: false }), incomesRoutes);
 app.use('/expenses', passport.authenticate('jwt', { session: false }), expensesRoutes);
 app.use('/members', passport.authenticate('jwt', { session: false }), membersRoutes);
+app.use('/profile', passport.authenticate('jwt', { session: false }), profileRoutes);
 
 app.listen(port, () => {
     console.log(`Server is listening at port: ${port}`);
