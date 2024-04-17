@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import '../Add/Add.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteIncome, updateIncome } from "../../Store/IncomeSlice";
-import { updateExpense } from "../../Store/ExpenseSlice";
+import { deleteExpense, updateExpense } from "../../Store/ExpenseSlice";
 import { updateMember } from "../../Store/MemberSlice";
 
 const Update = ({ page }) => {
@@ -17,21 +16,31 @@ const Update = ({ page }) => {
     const [date, setDate] = useState('');
     const dispatch = useDispatch();
     const [selectedOption, setSelectedOption] = useState(page);
-    let state_;
 
-    if (page === "member") {
-        state_ = state => state.members.members;
-    } else if (page === "income") {
-        state_ = state => state.incomes.incomes;
-    } else if (page === "expense") {
-        state_ = state => state.expenses.expenses;
+    let idProperty, findFunction;
+
+    switch (page) {
+        case "member":
+            idProperty = "member_id";
+            findFunction = item => String(item.member_id) === id;
+            break;
+        case "income":
+            idProperty = "income_id";
+            findFunction = item => String(item.income_id) === id;
+            break;
+        case "expense":
+            idProperty = "expense_id";
+            findFunction = item => String(item.expense_id) === id;
+            break;
+        default:
+            console.error("Invalid page");
     }
 
-    const items = useSelector(state_);
+    const items = useSelector(state => state[page + "s"][page + "s"]);
 
     useEffect(() => {
         if (id && items) {
-            const selectedItem = items.find(item => String(item.income_id) === id);
+            const selectedItem = items.find(findFunction);
             if (selectedItem) {
                 if (selectedOption === 'member') {
                     setName(selectedItem.title);
@@ -44,6 +53,7 @@ const Update = ({ page }) => {
                     setDate(firstTenDates);
                 }
             }
+            console.log(id)
         }
     }, [id, items, selectedOption]);
 
@@ -55,7 +65,6 @@ const Update = ({ page }) => {
         e.preventDefault();
 
         const updateAction = {
-            income_id: id,
             type: type,
             title: name,
             amount: amount,
@@ -64,21 +73,22 @@ const Update = ({ page }) => {
 
         switch (selectedOption) {
             case "income":
+                console.log(id)
                 dispatch(updateIncome({ incomeId: id, incomeData: updateAction }));
-                navigate(-1)
                 break;
             case "expense":
-                dispatch(updateExpense(updateAction));
-                navigate(-1)
+                console.log(id)
+                console.log({ expenseId: id, expenseData: updateAction })
+                dispatch(updateExpense({ expenseId: id, expenseData: updateAction }));
                 break;
             case "member":
                 dispatch(updateMember(updateAction));
-                navigate(-1)
                 break;
             default:
                 console.error("Invalid option");
         }
 
+        navigate(-1);
         setType("");
         setName("");
         setAmount("");
@@ -86,8 +96,10 @@ const Update = ({ page }) => {
     };
 
     const handleDelete = () => {
-        dispatch(deleteIncome(id))
-    }
+        dispatch(deleteIncome(id));
+        dispatch(deleteExpense(id))
+        navigate(-1);
+    };
 
     return (
         <div className="Add">

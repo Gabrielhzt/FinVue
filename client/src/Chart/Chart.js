@@ -2,21 +2,29 @@ import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
 import './Chart.css';
 
-const BarChart = ({ data, color, width, height }) => {
+const BarChart = ({ data, color, width, height, type }) => {
   const chartContainerRef = useRef(null);
   const chartInstance = useRef(null);
-  const totalIncomesList = data.map(item => parseInt(item.total_income));
+
+  let totalList;
+  if (type === "incomes") {
+    totalList = data.map(item => parseInt(item.total_income));
+  } else if (type === "expenses") {
+    totalList = data.map(item => parseInt(item.total_expense));
+  } else {
+    console.log('error')
+  }
   const monthList = data.map(item => parseInt(item.month));
 
   useEffect(() => {
-    if (chartContainerRef && chartContainerRef.current) {
+    if (chartContainerRef && chartContainerRef.current && data.length > 0) {
       if (chartInstance.current) {
         chartInstance.current.destroy();
       }
 
       const ctx = chartContainerRef.current.getContext('2d');
 
-      const maxIncome = Math.max(...totalIncomesList);
+      const maxIncome = Math.max(...totalList);
 
       chartInstance.current = new Chart(ctx, {
         type: 'bar',
@@ -24,7 +32,7 @@ const BarChart = ({ data, color, width, height }) => {
           labels: monthList,
           datasets: [{
             label: 'Example Dataset',
-            data: totalIncomesList,
+            data: totalList,
             backgroundColor: color,
             hoverBackgroundColor: color,
           }]

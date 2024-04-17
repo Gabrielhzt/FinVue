@@ -29,15 +29,18 @@ router.post('/add', (req, res) => {
     })
 })
 
-router.put('/update/:incomeId', (req, res) => {
+router.put('/update/:expenseId', (req, res) => {
     const { expenseId } = req.params;
-    const { type, title, amount, date, member } = req.body;
+    const { type, title, amount, date } = req.body;
 
-    pool.query('UPDATE expenses SET type = $1, title = $2, amount = $3, date = $4, member = $5 WHERE expense_id = $6', [type, title, amount, date, member, expenseId], (error, result) => {
+    console.log(expenseId)
+    console.log(type, title, amount, date)
+
+    pool.query('UPDATE expenses SET type = $1, title = $2, amount = $3, date = $4 WHERE expense_id = $5', [type, title, amount, date, expenseId], (error, result) => {
         if(error) {
             res.status(500).send('Error updating expense');
         }else {
-            res.send('Added successfully')
+            res.send('Updated successfully')
         }
     })
 })

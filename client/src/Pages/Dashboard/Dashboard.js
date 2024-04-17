@@ -7,17 +7,21 @@ import { Outlet, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserProfile, selectUser, selectStatus } from '../../Store/ProfileSlice';
 import { fetchFilteredIncomes, fetchIncomes, fetchTotalIncomes } from "../../Store/IncomeSlice";
+import { fetchTotalExpenses } from "../../Store/ExpenseSlice";
 
 const Dashboard = () => {
     const dispatch = useDispatch();
     const selectTotalIncomes = useSelector(state => state.incomes.totalIncomes);
     const totalIncomesStatus = useSelector(state => state.incomes.status);
+    const selectTotalExpenses = useSelector(state => state.expenses.totalExpenses);
+    const totalExpensesStatus = useSelector(state => state.expenses.status);
     const userProfile = useSelector(selectUser);
     const status = useSelector(selectStatus);
 
     useEffect(() => {
         dispatch(fetchUserProfile());
         dispatch(fetchTotalIncomes());
+        dispatch(fetchTotalExpenses())
     }, [dispatch]);
 
     const data = {
@@ -50,7 +54,7 @@ const Dashboard = () => {
                 ) : (
                     <p>Loading total incomes...</p>
                 )}
-                <ExpensesChart data={selectTotalIncomes} />
+                <ExpensesChart data={selectTotalExpenses} />
                 <div className="grey-2">
                     <div>
                         <h5 className="chart-title-2">Financial Health Overview</h5>

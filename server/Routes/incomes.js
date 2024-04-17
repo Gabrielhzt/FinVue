@@ -29,9 +29,12 @@ router.post('/add', (req, res) => {
 
 router.put('/update/:incomeId', (req, res) => {
     const { incomeId } = req.params;
-    const { type, title, amount, date, member } = req.body;
+    const { type, title, amount, date } = req.body;
 
-    pool.query('UPDATE incomes SET type = $1, title = $2, amount = $3, date = $4, member = $5 WHERE income_id = $6', [type, title, amount, date, member, incomeId], (error, result) => {
+    console.log(incomeId)
+    console.log(type, title, amount, date)
+
+    pool.query('UPDATE incomes SET type = $1, title = $2, amount = $3, date = $4 WHERE income_id = $5', [type, title, amount, date, incomeId], (error, result) => {
         if(error) {
             res.status(500).send('Error updating income');
         }else {

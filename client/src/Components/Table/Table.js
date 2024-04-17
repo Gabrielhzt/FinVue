@@ -31,12 +31,12 @@ const Table = ({data_table = [], type}) => {
                     <tr key={item.income_id} className="table-element">
                         <td>{item.name}</td>
                         <td>${item.amount}</td>
-                        <td><Link to={`./update/${item.income_id}`}><button className="update-btn"><FontAwesomeIcon icon={faPenToSquare} size="lg" /></button></Link></td>
+                        <td><Link to={`./update/${item.member_id}`}><button className="update-btn"><FontAwesomeIcon icon={faPenToSquare} size="lg" /></button></Link></td>
                     </tr>
                     ))}
                 </tbody>
-                ):(
-                    <tbody>
+                ): type === 'income' ? (
+                <tbody>
                     {data_table.map((item) => (
                     <tr key={item.income_id} className="table-element">
                         <td>{item.type}</td>
@@ -44,6 +44,18 @@ const Table = ({data_table = [], type}) => {
                         <td>${item.amount}</td>
                         <td>{item.date}</td>
                         <td><Link to={`./update/${item.income_id}`}><button className="update-btn"><FontAwesomeIcon icon={faPenToSquare} size="lg" /></button></Link></td>
+                    </tr>
+                    ))}
+                </tbody>
+                ):(
+                <tbody>
+                    {data_table.map((item) => (
+                    <tr key={item.income_id} className="table-element">
+                        <td>{item.type}</td>
+                        <td>{item.title}</td>
+                        <td>${item.amount}</td>
+                        <td>{item.date}</td>
+                        <td><Link to={`./update/${item.expense_id}`}><button className="update-btn"><FontAwesomeIcon icon={faPenToSquare} size="lg" /></button></Link></td>
                     </tr>
                     ))}
                 </tbody>

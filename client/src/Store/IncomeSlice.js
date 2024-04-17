@@ -42,6 +42,8 @@ export const updateIncome = createAsyncThunk(
   'incomes/updateIncome',
   async ({ incomeId, incomeData }) => {
     try {
+        console.log(incomeData)
+        console.log(incomeId)
         const token = localStorage.getItem('token');
         const response = await axios.put(`http://localhost:24635/incomes/update/${incomeId}`, 
         { ...incomeData }, {

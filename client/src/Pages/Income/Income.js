@@ -75,7 +75,7 @@ const Income = () => {
                         <Link to={'./add'}><FontAwesomeIcon icon={faPlus} className="btn-4" /></Link>
                     </div>
                 </div>
-                <Table data_table={filteredIncomes} />
+                <Table data_table={filteredIncomes} type={'income'} />
             </div>
             <div className="Add">
                 <Outlet />

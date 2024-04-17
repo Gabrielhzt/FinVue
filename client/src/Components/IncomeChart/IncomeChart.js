@@ -35,7 +35,7 @@ const IncomeChart = ({data}) => {
                     <p>{differencePercentage.toFixed(2)}%</p> {/* Afficher la différence en pourcentage */}
                 </div>
             </div>
-            <BarChart data={data} color={'#fff'} width={100} height={1000} barSpacing={10} />
+            <BarChart data={data} color={'#fff'} width={100} height={1000} barSpacing={10} type={'incomes'} />
         </div>
     )
 }
