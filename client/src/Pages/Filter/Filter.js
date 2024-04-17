@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
 
 const Filter = ({ availableTypes, filterValue, setFilterValue }) => {
     const [active, setActive] = useState(false)

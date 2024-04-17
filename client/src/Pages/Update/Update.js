@@ -4,11 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { updateIncome } from "../../Store/IncomeSlice";
+import { deleteIncome, updateIncome } from "../../Store/IncomeSlice";
 import { updateExpense } from "../../Store/ExpenseSlice";
 import { updateMember } from "../../Store/MemberSlice";
 
-const Update = ({page}) => {
+const Update = ({ page }) => {
     const navigate = useNavigate();
     const { id } = useParams();
     const [type, setType] = useState('');
@@ -31,20 +31,21 @@ const Update = ({page}) => {
 
     useEffect(() => {
         if (id && items) {
-            const selectedItem = items.find(item => item.id.toString() === id);
+            const selectedItem = items.find(item => String(item.income_id) === id);
             if (selectedItem) {
-                if(selectedOption === 'member') {
-                    setName(selectedItem.name);
+                if (selectedOption === 'member') {
+                    setName(selectedItem.title);
                     setAmount(selectedItem.amount);
-                }else {
+                } else {
                     setType(selectedItem.type);
-                    setName(selectedItem.name);
+                    setName(selectedItem.title);
                     setAmount(selectedItem.amount);
-                    setDate(selectedItem.date);
+                    const firstTenDates = selectedItem.date.slice(0, 10);
+                    setDate(firstTenDates);
                 }
             }
         }
-    }, [id, items]);
+    }, [id, items, selectedOption]);
 
     const handleChange = event => {
         setSelectedOption(event.target.value);
@@ -52,34 +53,49 @@ const Update = ({page}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(selectedOption === "income") {
-            dispatch(updateIncome({ id, type, name, amount, date }));
-            setType('')
-            setName('');
-            setAmount('');
-            setDate('');
-        }else if(selectedOption === "expense") {
-            dispatch(updateExpense({ id, type, name, amount, date }));
-            setType('')
-            setName('');
-            setAmount('');
-            setDate('');
-        }else if (selectedOption === "member") {
-            dispatch(updateMember({ id, name, amount }));
-            setName('');
-            setAmount('');
-        }else {
-            console.log("error")
+
+        const updateAction = {
+            income_id: id,
+            type: type,
+            title: name,
+            amount: amount,
+            date: date
+        };
+
+        switch (selectedOption) {
+            case "income":
+                dispatch(updateIncome({ incomeId: id, incomeData: updateAction }));
+                navigate(-1)
+                break;
+            case "expense":
+                dispatch(updateExpense(updateAction));
+                navigate(-1)
+                break;
+            case "member":
+                dispatch(updateMember(updateAction));
+                navigate(-1)
+                break;
+            default:
+                console.error("Invalid option");
         }
+
+        setType("");
+        setName("");
+        setAmount("");
+        setDate("");
     };
-    
+
+    const handleDelete = () => {
+        dispatch(deleteIncome(id))
+    }
+
     return (
         <div className="Add">
             <div className="add">
-            <form onSubmit={handleSubmit}>
-                <div className="title-add">
-                    <div className="flex-5">
-                        <label>Update </label>
+                <form onSubmit={handleSubmit}>
+                    <div className="title-add">
+                        <div className="flex-5">
+                            <label>Update </label>
                             <select
                                 id="select-option"
                                 value={selectedOption}
@@ -87,93 +103,94 @@ const Update = ({page}) => {
                                 className="select"
                                 required
                             >
-                            <option value="" className="green-title">Select an option</option>
-                            <option value="income" className="green-title">Income</option>
-                            <option value="expense" className="green-title">Expense</option>
-                            <option value="member" className="green-title">Member</option>
-                        </select>
+                                <option value="" className="green-title">Select an option</option>
+                                <option value="income" className="green-title">Income</option>
+                                <option value="expense" className="green-title">Expense</option>
+                                <option value="member" className="green-title">Member</option>
+                            </select>
+                        </div>
+                        <button className="back" onClick={() => navigate(-1)}><FontAwesomeIcon icon={faXmark} /></button>
                     </div>
-                    <button className="back" onClick={() => navigate(-1)}><FontAwesomeIcon icon={faXmark} /></button>
-                </div>
-                <br />
-                {selectedOption === 'member' ? (
-                    <div className="all-input">
-                        <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            required
-                            className="input-2"
-                            placeholder="Name"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                        />
-                        <div>
-                            <span className="dollar-sign">$</span>
+                    <br />
+                    {selectedOption === 'member' ? (
+                        <div className="all-input">
                             <input
-                                type="number"
-                                id="amount"
-                                name="amount"
+                                type="text"
+                                id="name"
+                                name="name"
                                 required
-                                className="input-3"
-                                placeholder="Amount"
-                                value={amount} 
-                                onChange={(e) => setAmount(e.target.value)}
+                                className="input-2"
+                                placeholder="Name"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                            />
+                            <div>
+                                <span className="dollar-sign">$</span>
+                                <input
+                                    type="number"
+                                    id="amount"
+                                    name="amount"
+                                    required
+                                    className="input-3"
+                                    placeholder="Amount"
+                                    value={amount}
+                                    onChange={(e) => setAmount(e.target.value)}
+                                />
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="all-input">
+                            <input
+                                type="text"
+                                id="type"
+                                name="type"
+                                required
+                                className="input-2"
+                                placeholder="Type"
+                                value={type}
+                                onChange={(e) => setType(e.target.value)}
+                            />
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                required
+                                className="input-2"
+                                placeholder="Name"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                            />
+                            <div>
+                                <span className="dollar-sign">$</span>
+                                <input
+                                    type="number"
+                                    id="amount"
+                                    name="amount"
+                                    required
+                                    className="input-3"
+                                    placeholder="Amount"
+                                    value={amount}
+                                    onChange={(e) => setAmount(e.target.value)}
+                                />
+                            </div>
+                            <input
+                                type="date"
+                                id="date"
+                                name="date"
+                                required
+                                className="input-2"
+                                placeholder="Date/Period"
+                                value={date}
+                                onChange={(e) => setDate(e.target.value)}
                             />
                         </div>
+                    )}
+                    <div className="center-2">
+                        <button type="submit" className="btn-6">Update</button>
+                        <button onClick={handleDelete}>Delete</button>
                     </div>
-                ):(
-                <div className="all-input">
-                    <input
-                        type="text"
-                        id="type"
-                        name="type"
-                        required
-                        className="input-2"
-                        placeholder="Type"
-                        value={type} 
-                        onChange={(e) => setType(e.target.value)}
-                    />
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        required
-                        className="input-2"
-                        placeholder="Name"
-                        value={name} 
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                    <div>
-                        <span className="dollar-sign">$</span>
-                        <input
-                            type="number"
-                            id="amount"
-                            name="amount"
-                            required
-                            className="input-3"
-                            placeholder="Amount"
-                            value={amount} 
-                            onChange={(e) => setAmount(e.target.value)}
-                        />
-                    </div>
-                    <input
-                        type="date"
-                        id="date"
-                        name="date"
-                        required
-                        className="input-2"
-                        placeholder="Date/Period"
-                        value={date} 
-                        onChange={(e) => setDate(e.target.value)}
-                    />
-                </div>
-                )}
-                <div className="center-2">
-                    <button type="submit" className="btn-6">Update</button>
-                </div>
-            </form>
-        </div>
+                </form>
+            </div>
         </div>
     )
 }

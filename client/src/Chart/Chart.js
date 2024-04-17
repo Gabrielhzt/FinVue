@@ -5,6 +5,8 @@ import './Chart.css';
 const BarChart = ({ data, color, width, height }) => {
   const chartContainerRef = useRef(null);
   const chartInstance = useRef(null);
+  const totalIncomesList = data.map(item => parseInt(item.total_income));
+  const monthList = data.map(item => parseInt(item.month));
 
   useEffect(() => {
     if (chartContainerRef && chartContainerRef.current) {
@@ -14,13 +16,15 @@ const BarChart = ({ data, color, width, height }) => {
 
       const ctx = chartContainerRef.current.getContext('2d');
 
+      const maxIncome = Math.max(...totalIncomesList);
+
       chartInstance.current = new Chart(ctx, {
         type: 'bar',
         data: {
-          labels: data.labels,
+          labels: monthList,
           datasets: [{
             label: 'Example Dataset',
-            data: data.values,
+            data: totalIncomesList,
             backgroundColor: color,
             hoverBackgroundColor: color,
           }]
@@ -35,7 +39,7 @@ const BarChart = ({ data, color, width, height }) => {
             y: {
               display: false,
               min: 0,
-              max: 19,
+              max: maxIncome,
             }
           },
           plugins: {

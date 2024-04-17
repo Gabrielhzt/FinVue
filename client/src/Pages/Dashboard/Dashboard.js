@@ -3,20 +3,23 @@ import './Dashboard.css';
 import BigChart from "../../Chart/BigChart/BigChart";
 import IncomeChart from "../../Components/IncomeChart/IncomeChart";
 import ExpensesChart from "../../Components/ExpensesChart/ExpensesChart";
-import { Outlet } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUserProfile, selectUser, selectError, selectStatus } from '../../Store/ProfileSlice';
+import { fetchUserProfile, selectUser, selectStatus } from '../../Store/ProfileSlice';
+import { fetchFilteredIncomes, fetchIncomes, fetchTotalIncomes } from "../../Store/IncomeSlice";
 
 const Dashboard = () => {
     const dispatch = useDispatch();
+    const selectTotalIncomes = useSelector(state => state.incomes.totalIncomes);
+    const totalIncomesStatus = useSelector(state => state.incomes.status);
     const userProfile = useSelector(selectUser);
     const status = useSelector(selectStatus);
-    const error = useSelector(selectError);
 
     useEffect(() => {
         dispatch(fetchUserProfile());
+        dispatch(fetchTotalIncomes());
     }, [dispatch]);
-  
+
     const data = {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June'],
         values: [19, 8, 14, 10, 16, 19]
@@ -27,17 +30,27 @@ const Dashboard = () => {
         values: [19, 8, 14, 10, 16, 19, 14, 18]
     };
 
+    const userFullName = userProfile ? userProfile.full_name : "User";
+
     return (
         <div>
             <div className="welc-3">
                 <h1>Expense Tracker</h1>
-                {status === 'succeeded' && <p>Welcome, {userProfile.full_name}!</p>}
-                {status === 'loading' && <p>Loading...</p>}
-                {status === 'failed' && <p>Error: {error}</p>}
+                {status === 'succeeded' && <p>Welcome, {userFullName}!</p>}
+                {status === 'loading' && <p>Loading user profile...</p>}
+                {status === 'failed' && <p>Error: Unable to load user profile</p>}
             </div>
             <div className="info-top">
-                <IncomeChart data={data} />
-                <ExpensesChart data={data} />
+                {totalIncomesStatus === 'succeeded' ? (
+                    selectTotalIncomes.length > 0 ? (
+                        <IncomeChart data={selectTotalIncomes} />
+                    ) : (
+                        <p>No total incomes available.</p>
+                    )
+                ) : (
+                    <p>Loading total incomes...</p>
+                )}
+                <ExpensesChart data={selectTotalIncomes} />
                 <div className="grey-2">
                     <div>
                         <h5 className="chart-title-2">Financial Health Overview</h5>

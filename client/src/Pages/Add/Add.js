@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import './Add.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { addIncome } from "../../Store/IncomeSlice";
 import { addExpense } from "../../Store/ExpenseSlice";
@@ -11,7 +11,7 @@ import { addMember } from "../../Store/MemberSlice";
 const Add = ({page}) => {
     const navigate = useNavigate();
     const [type, setType] = useState('');
-    const [name, setName] = useState('');
+    const [title, setTitle] = useState('');
     const [amount, setAmount] = useState('');
     const [date, setDate] = useState('');
     const dispatch = useDispatch();
@@ -24,21 +24,14 @@ const Add = ({page}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if(selectedOption === "income") {
-            dispatch(addIncome({ type, name, amount, date }));
-            setType('')
-            setName('');
-            setAmount('');
-            setDate('');
+            dispatch(addIncome({ type, title, amount, date }));
+            navigate(-1)
         }else if(selectedOption === "expense") {
-            dispatch(addExpense({ type, name, amount, date }));
-            setType('')
-            setName('');
-            setAmount('');
-            setDate('');
+            dispatch(addExpense({ type, title, amount, date }));
+            navigate(-1)
         }else if (selectedOption === "member") {
-            dispatch(addMember({ name, amount }));
-            setName('');
-            setAmount('');
+            dispatch(addMember({ title, amount }));
+            navigate(-1)
         }else {
             console.log("o")
         }
@@ -71,13 +64,13 @@ const Add = ({page}) => {
                     <div className="all-input">
                         <input
                             type="text"
-                            id="name"
-                            name="name"
+                            id="title"
+                            name="title"
                             required
                             className="input-2"
                             placeholder="Name"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
                         />
                         <div>
                             <span className="dollar-sign">$</span>
@@ -112,8 +105,8 @@ const Add = ({page}) => {
                         required
                         className="input-2"
                         placeholder="Name"
-                        value={name} 
-                        onChange={(e) => setName(e.target.value)}
+                        value={title} 
+                        onChange={(e) => setTitle(e.target.value)}
                     />
                     <div>
                         <span className="dollar-sign">$</span>

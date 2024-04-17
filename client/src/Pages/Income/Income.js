@@ -6,14 +6,25 @@ import Table from "../../Components/Table/Table";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Link, Outlet } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Filter from "../Filter/Filter";
+import { fetchFilteredIncomes, fetchIncomes, fetchTotalIncomes } from "../../Store/IncomeSlice";
 
 const Income = () => {
+    const dispatch = useDispatch();
     const incomes = useSelector(state => state.incomes.incomes);
+    const allfilter = useSelector(state => state.incomes.allfilter);
+    const selectTotalIncomes = useSelector(state => state.incomes.totalIncomes);
+    const totalIncomesStatus = useSelector(state => state.incomes.status);
     const [filterValue, setFilterValue] = useState("");
     const [filteredIncomes, setFilteredIncomes] = useState(incomes);
     const [availableTypes, setAvailableTypes] = useState([]);
+
+    useEffect(() => {
+        dispatch(fetchIncomes());
+        dispatch(fetchFilteredIncomes());
+        dispatch(fetchTotalIncomes());
+    }, [dispatch]);
 
     useEffect(() => {
         setAvailableTypes([...new Set(incomes.map(income => income.type))]);
@@ -34,24 +45,21 @@ const Income = () => {
         values: [19, 8, 14, 10, 16, 19]
     };
 
-
     return (
         <div>
             <div className="info-top">
-                <IncomeChart data={data} />
+                {totalIncomesStatus === 'loading' ? (
+                    <p>Loading...</p>
+                ) : (
+                    <IncomeChart data={selectTotalIncomes} />
+                )}
                 <div className="pie">
                     <div>
                         <h2 className="income-title">Income Distribution</h2>
                         <p className="description">Visualize how your income is distributed among different categories or sources. Explore the pie chart below to understand the breakdown of your income.</p>
-                        <ul className="list">
-                            {availableTypes.map((income, index) => (
-                                <li key={index}>
-                                    <p>{income}</p>
-                                </li>
-                            ))}
-                        </ul>
+                        
                     </div>
-                    <PieChart data={data} />
+                    <PieChart data={allfilter.length > 0 ? allfilter : filteredIncomes} />
                 </div>
             </div>
             <div>
