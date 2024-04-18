@@ -29,7 +29,7 @@ const Table = ({data_table = [], type}) => {
                     <tbody>
                     {data_table.map((item) => (
                     <tr key={item.income_id} className="table-element">
-                        <td>{item.name}</td>
+                        <td>{item.full_name}</td>
                         <td>${item.amount}</td>
                         <td><Link to={`./update/${item.member_id}`}><button className="update-btn"><FontAwesomeIcon icon={faPenToSquare} size="lg" /></button></Link></td>
                     </tr>

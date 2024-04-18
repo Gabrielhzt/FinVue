@@ -1,19 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PieChart from "../../Chart/PieChart/PieChart";
 import Table from "../../Components/Table/Table";
 import BarChart from "../../Chart/Chart";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowTrendUp, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Link, Outlet } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import Filter from "../Filter/Filter";
+import { fetchMembers, fetchTotalMembers, selectMembers } from "../../Store/MemberSlice";
 
 const Members = () => {
-    const members = useSelector(state => state.members.members);
+    const dispatch = useDispatch();
+    const [totalSum, setTotalSum] = useState(0);
+    const members = useSelector(selectMembers);
+    const totalMembers = useSelector(state => state.members.totalMembers);
+    const members_status = useSelector(state => state.members.members_status);
+    const totalMembers_status = useSelector(state => state.members.totalMembers_status);
+
+    useEffect(() => {
+        dispatch(fetchTotalMembers())
+        dispatch(fetchMembers());
+    }, [dispatch]);
+
+    useEffect(() => {
+        if (totalMembers_status === 'succeeded') {
+            const totalList = totalMembers.map(item => parseInt(item.net_total));
+            const sum = totalList.reduce((total, value) => total + value, 0);
+            setTotalSum(sum);
+        }
+    }, [totalMembers, totalMembers_status]);
 
     const data = {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June'],
+        type: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June'],
         values: [19, 8, 14, 10, 16, 19]
     };
+
+    if(members_status !== 'succeeded' && totalMembers_status !== 'succeeded'){
+        return (
+            <div>
+                Loading...
+            </div>
+        )
+    }
 
     return (
         <div>
@@ -22,31 +50,21 @@ const Members = () => {
                     <div className="flex-2">
                         <div>
                             <h5 className="chart-title">Total Funds</h5>
-                            <h2 className="chart-info">$324,162</h2>
+                            <h2 className="chart-info">{totalSum}</h2>
                         </div>
                         <div className="grow">
                             <FontAwesomeIcon icon={faArrowTrendUp} />
                             <p>21%</p>
                         </div>
                     </div>
-                    <BarChart data={data} color={'#fff'} width={100} height={1000} barSpacing={10} />
+                    <BarChart data={totalMembers} color={'#fff'} width={100} height={1000} barSpacing={10} type={'members'} />
                 </div>
                 <div className="pie">
                     <div>
                         <h2 className="income-title">Member Contributions</h2>
                         <p className="description">Explore how funds are allocated among account members through an intuitive and interactive pie chart visualization.</p>
-                        <ul className="list">
-                            <li>
-                                <div></div>
-                                <p>Salary</p>
-                            </li>
-                            <li>
-                                <div></div>
-                                <p>Salary</p>
-                            </li>
-                        </ul>
                     </div>
-                    <PieChart data={data} />
+                    <PieChart data={members} type={"member"} />
                 </div>
             </div>
             <div>
@@ -64,7 +82,7 @@ const Members = () => {
                 <Outlet />
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Members;

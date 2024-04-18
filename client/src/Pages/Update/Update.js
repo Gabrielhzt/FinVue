@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteIncome, updateIncome } from "../../Store/IncomeSlice";
 import { deleteExpense, updateExpense } from "../../Store/ExpenseSlice";
-import { updateMember } from "../../Store/MemberSlice";
+import { deleteMember, updateMember } from "../../Store/MemberSlice";
 
 const Update = ({ page }) => {
     const navigate = useNavigate();
@@ -43,7 +43,7 @@ const Update = ({ page }) => {
             const selectedItem = items.find(findFunction);
             if (selectedItem) {
                 if (selectedOption === 'member') {
-                    setName(selectedItem.title);
+                    setName(selectedItem.full_name);
                     setAmount(selectedItem.amount);
                 } else {
                     setType(selectedItem.type);
@@ -63,41 +63,51 @@ const Update = ({ page }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        const updateAction = {
+    
+        let updateAction = {
             type: type,
-            title: name,
             amount: amount,
             date: date
         };
-
+    
+        // Ajoutez des conditions pour définir correctement les propriétés en fonction de l'option sélectionnée
+        if (selectedOption === 'member') {
+            updateAction = {
+                ...updateAction,
+                full_name: name
+            };
+        } else {
+            updateAction = {
+                ...updateAction,
+                title: name
+            };
+        }
+    
         switch (selectedOption) {
             case "income":
-                console.log(id)
+                console.log(id);
                 dispatch(updateIncome({ incomeId: id, incomeData: updateAction }));
                 break;
             case "expense":
-                console.log(id)
-                console.log({ expenseId: id, expenseData: updateAction })
+                console.log(id);
+                console.log({ expenseId: id, expenseData: updateAction });
                 dispatch(updateExpense({ expenseId: id, expenseData: updateAction }));
                 break;
             case "member":
-                dispatch(updateMember(updateAction));
+                dispatch(updateMember({ memberId: id, memberData: updateAction }));
                 break;
             default:
                 console.error("Invalid option");
         }
-
+    
         navigate(-1);
-        setType("");
-        setName("");
-        setAmount("");
-        setDate("");
     };
+    
 
     const handleDelete = () => {
         dispatch(deleteIncome(id));
         dispatch(deleteExpense(id))
+        dispatch(deleteMember(id))
         navigate(-1);
     };
 

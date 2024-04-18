@@ -11,6 +11,8 @@ const BarChart = ({ data, color, width, height, type }) => {
     totalList = data.map(item => parseInt(item.total_income));
   } else if (type === "expenses") {
     totalList = data.map(item => parseInt(item.total_expense));
+  }else if (type === "members") {
+    totalList = data.map(item => parseInt(item.net_total));
   } else {
     console.log('error')
   }

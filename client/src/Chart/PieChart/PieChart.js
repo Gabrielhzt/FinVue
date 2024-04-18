@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import './PieChart.css';
 import Chart from 'chart.js/auto';
 
-const PieChart = ({ data }) => {
+const PieChart = ({ data, type }) => {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
 
@@ -11,9 +11,15 @@ const PieChart = ({ data }) => {
       chartInstance.current.destroy();
     }
     
-    // Extraire les labels et les valeurs du tableau de données
-    const labels = data.map(item => item.type);
-    const values = data.map(item => parseFloat(item.total_amount));
+    let labels, values;
+
+    if(type === "member") {
+      labels = data.map(item => item.full_name);
+      values = data.map(item => parseFloat(item.amount));
+    } else {
+      labels = data.map(item => item.type);
+      values = data.map(item => parseFloat(item.total_amount));
+    }
 
     const ctx = chartRef.current.getContext('2d');
     chartInstance.current = new Chart(ctx, {
@@ -36,7 +42,7 @@ const PieChart = ({ data }) => {
         plugins: {
           legend: {
             position: 'left',
-            align: 'start', // Aligner les carrés à gauche
+            align: 'start',
             labels: {
               boxWidth: 10,
               padding: 10
@@ -51,7 +57,7 @@ const PieChart = ({ data }) => {
         chartInstance.current.destroy();
       }
     };
-  }, [data]);
+  }, [data, type]);
 
   return <canvas ref={chartRef} className='pie-graph' />;
 };

@@ -30,7 +30,7 @@ const Add = ({page}) => {
             dispatch(addExpense({ type, title, amount, date }));
             navigate(-1)
         }else if (selectedOption === "member") {
-            dispatch(addMember({ title, amount }));
+            dispatch(addMember({ full_name: title, amount }));
             navigate(-1)
         }else {
             console.log("o")
