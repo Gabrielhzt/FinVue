@@ -3,10 +3,10 @@ import './Dashboard.css';
 import BigChart from "../../Chart/BigChart/BigChart";
 import IncomeChart from "../../Components/IncomeChart/IncomeChart";
 import ExpensesChart from "../../Components/ExpensesChart/ExpensesChart";
-import { Outlet, useParams } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserProfile, selectUser, selectStatus } from '../../Store/ProfileSlice';
-import { fetchFilteredIncomes, fetchIncomes, fetchTotalIncomes } from "../../Store/IncomeSlice";
+import { fetchTotalIncomes } from "../../Store/IncomeSlice";
 import { fetchTotalExpenses } from "../../Store/ExpenseSlice";
 import { fetchMembers, fetchTotalMembers, selectMembers } from "../../Store/MemberSlice";
 
@@ -15,13 +15,11 @@ const Dashboard = () => {
     const selectTotalIncomes = useSelector(state => state.incomes.totalIncomes);
     const totalIncomesStatus = useSelector(state => state.incomes.status);
     const selectTotalExpenses = useSelector(state => state.expenses.totalExpenses);
-    const totalExpensesStatus = useSelector(state => state.expenses.status);
     const userProfile = useSelector(selectUser);
     const status = useSelector(selectStatus);
     const [totalSum, setTotalSum] = useState(0);
     const members = useSelector(selectMembers);
     const totalMembers = useSelector(state => state.members.totalMembers);
-    const members_status = useSelector(state => state.members.members_status);
     const totalMembers_status = useSelector(state => state.members.totalMembers_status);
 
     useEffect(() => {

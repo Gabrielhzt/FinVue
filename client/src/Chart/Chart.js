@@ -94,7 +94,7 @@ const BarChart = ({ data, color, width, height, type }) => {
         chartInstance.current.destroy();
       }
     };
-  }, [data, color, width, height]);
+  }, [data, color, width, height, monthList, totalList]);
 
   return (
     <div>
