@@ -2,25 +2,40 @@ import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
 import './BigChart.css';
 
+const formatValue = (value) => {
+  if (value >= 1000000) {
+    return (value / 1000000).toFixed(1) + 'm';
+  } else if (value >= 1000) {
+    return (value / 1000).toFixed(1) + 'k';
+  } else {
+    return value.toString();
+  }
+};
+
 const BigChart = ({ data }) => {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
 
+  const totalList = data.map(item => parseInt(item.net_total));
+  const monthList = data.map(item => parseInt(item.month));
+
   useEffect(() => {
     if (chartRef && chartRef.current) {
       if (chartInstance.current) {
-        chartInstance.current.destroy(); // Détruit le graphique existant s'il y en a un
+        chartInstance.current.destroy();
       }
 
       const ctx = chartRef.current.getContext('2d');
 
+      const max = Math.max(...totalList);
+
       chartInstance.current = new Chart(ctx, {
         type: 'bar',
         data: {
-          labels: data.labels,
+          labels: monthList,
           datasets: [{
             label: 'Example Dataset',
-            data: data.values,
+            data: totalList,
             backgroundColor: '#41B92D',
             hoverBackgroundColor: '#41B92D',
           }]
@@ -38,7 +53,12 @@ const BigChart = ({ data }) => {
                 },
                 beginAtZero: true,
                 min: 0,
-                max: 25,
+                max: max,
+                ticks: {
+                  callback: function(value) {
+                    return formatValue(value);
+                  }
+                }
               }
           },
           plugins: {

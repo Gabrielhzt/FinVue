@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowTrendUp, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Link, Outlet } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import Filter from "../Filter/Filter";
 import { fetchMembers, fetchTotalMembers, selectMembers } from "../../Store/MemberSlice";
 
 const Members = () => {
@@ -18,7 +17,7 @@ const Members = () => {
     const totalMembers_status = useSelector(state => state.members.totalMembers_status);
 
     useEffect(() => {
-        dispatch(fetchTotalMembers())
+        dispatch(fetchTotalMembers());
         dispatch(fetchMembers());
     }, [dispatch]);
 
@@ -29,11 +28,6 @@ const Members = () => {
             setTotalSum(sum);
         }
     }, [totalMembers, totalMembers_status]);
-
-    const data = {
-        type: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June'],
-        values: [19, 8, 14, 10, 16, 19]
-    };
 
     if(members_status !== 'succeeded' && totalMembers_status !== 'succeeded'){
         return (
@@ -50,7 +44,7 @@ const Members = () => {
                     <div className="flex-2">
                         <div>
                             <h5 className="chart-title">Total Funds</h5>
-                            <h2 className="chart-info">{totalSum}</h2>
+                            <h2 className="chart-info">${totalSum}</h2>
                         </div>
                         <div className="grow">
                             <FontAwesomeIcon icon={faArrowTrendUp} />

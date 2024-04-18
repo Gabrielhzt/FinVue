@@ -9,10 +9,10 @@
     color: #000;
     padding: 15px;
     border-radius: 10px;
-    height: 150px;
+    max-height: 150px;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 15px;
     min-width: 300px;
 }
 
