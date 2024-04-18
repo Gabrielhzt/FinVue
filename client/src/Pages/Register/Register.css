@@ -4,6 +4,19 @@
     padding: 20px 40px;
 }
 
+.Title-3 {
+    color: #41B92D;
+    font-size: 35px;
+    padding: 20px 40px;
+}
+
+.form1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+}
+
 .center {
     display: flex;
     justify-content: center;
@@ -11,17 +24,18 @@
 }
 
 .title-register {
-    margin-bottom: 60px;
+    margin-bottom: 20px;
     font-size: 30px;
 }
 
 .register {
     border: 1.5px solid #41B92D;
     border-radius: 5px;
-    padding: 40px 60px;
+    padding: 30px 0 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+
 }
 
 .label {
@@ -35,7 +49,7 @@
     font-weight: 300;
     padding: 5px 10px;
     width: 250px;
-    margin: 10px 0;
+    margin: 10px 0 0;
 }
 
 .center-2 {
@@ -44,7 +58,7 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
-    margin-top: 40px;
+    margin-top:20px;
 }
 
 .center-2 p {

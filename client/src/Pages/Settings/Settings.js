@@ -46,8 +46,11 @@ const Settings = () => {
 
     const handleUpdatePassword = () => {
         if(openPassword) {
-            dispatch(updatePassword(password));
-            setOpenPassword(false);
+            if(password.length > 0) {
+                dispatch(updatePassword(password));
+            }else {
+                setOpenPassword(false);
+            }
         } else {
             setOpenPassword(true);
         }

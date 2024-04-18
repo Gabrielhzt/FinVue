@@ -51,48 +51,54 @@ const Register = () => {
 
     return (
         <div>
-            <h1 className="Title-2">Finvue</h1>
+            <h1 className="Title-3">Finvue</h1>
             <div className="center">
                 <div className="register">
                     <h2 className="title-register">Register</h2>
-                    <form onSubmit={handleRegister}>
-                        <label htmlFor="username" className="label">Username:</label>
-                        <br />
-                        <input
-                            type="text"
-                            id="username"
-                            name="username"
-                            value={fullname}
-                            onChange={(e) => setFullname(e.target.value)}
-                            required
-                            className="input"
-                        />
-                        <br />
-                        <br />
-                        <label htmlFor="email" className="label">Email:</label>
-                        <br />
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                            className="input"
-                        />
+                    <form className="form1" onSubmit={handleRegister}>
+                        <div>
+                            <label htmlFor="username" className="label">Username:</label>
+                            <br />
+                            <input
+                                type="text"
+                                id="username"
+                                name="username"
+                                value={fullname}
+                                onChange={(e) => setFullname(e.target.value)}
+                                required
+                                className="input"
+                            />
+                        </div>
                         <br />
                         <br />
-                        <label htmlFor="password" className="label">Password:</label>
+                        <div>
+                            <label htmlFor="email" className="label">Email:</label>
+                            <br />
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                                className="input"
+                            />
+                        </div>
                         <br />
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                            className="input"
-                        />
+                        <br />
+                        <div>
+                            <label htmlFor="password" className="label">Password:</label>
+                            <br />
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                                className="input"
+                            />
+                        </div>
                         <br />
                         <br />
                         <div className="center-2">

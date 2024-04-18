@@ -49,35 +49,39 @@ const Login = () => {
 
     return (
         <div>
-            <h1 className="Title-2">Finvue</h1>
+            <h1 className="Title-3">Finvue</h1>
             <div className="center">
-                <div className="login">
+                <div className="register">
                     <h2 className="title-login">Login</h2>
-                    <form onSubmit={handleLogin}>
-                        <label htmlFor="email" className="label">Email:</label>
+                    <form className="form1" onSubmit={handleLogin}>
+                        <div>
+                            <label htmlFor="email" className="label">Email:</label>
+                            <br />
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                                className="input"
+                            />
+                        </div>
                         <br />
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                            className="input"
-                        />
                         <br />
-                        <br />
-                        <label htmlFor="password" className="label">Password:</label>
-                        <br />
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                            className="input"
-                        />
+                        <div>
+                            <label htmlFor="password" className="label">Password:</label>
+                            <br />
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                                className="input"
+                            />
+                        </div>
                         <br />
                         <br />
                         <div className="center-2">
