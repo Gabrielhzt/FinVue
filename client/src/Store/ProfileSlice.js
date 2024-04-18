@@ -11,7 +11,6 @@ export const fetchUserProfile = createAsyncThunk(
           Authorization: token
         }
       });
-      console.log(response)
       return response.data;
     } catch (error) {
       console.log('Error fetching user profile:', error);
@@ -31,7 +30,6 @@ export const updateFullName = createAsyncThunk(
           Authorization: token
         }
       });
-      console.log(response)
       return response.data.fullName;
     } catch (error) {
       console.log('Error fetching user profile:', error);
@@ -45,7 +43,7 @@ export const updateEmail = createAsyncThunk(
   async (email, { rejectWithValue }) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.put('http://localhost:24635/profile/email',
+      await axios.put('http://localhost:24635/profile/email',
       { email }, {
         headers: {
           Authorization: token
@@ -63,7 +61,7 @@ export const updatePassword = createAsyncThunk(
   async (password, { rejectWithValue }) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.put('http://localhost:24635/profile/password', { password }, {
+      await axios.put('http://localhost:24635/profile/password', { password }, {
         headers: {
           Authorization: token
         }
@@ -93,7 +91,6 @@ export const profileSlice = createSlice({
       })
       .addCase(fetchUserProfile.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        console.log(action.payload)
         state.fullName = action.payload.full_name;
         state.email = action.payload.email;
         state.error = null;
@@ -108,7 +105,6 @@ export const profileSlice = createSlice({
       })
       .addCase(updateFullName.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        console.log(action.payload)
         state.fullName = action.payload;
         state.error = null;
       })

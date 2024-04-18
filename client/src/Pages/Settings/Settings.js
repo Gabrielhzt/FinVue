@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import './Settings.css';
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUserProfile, selectUser, updateFullName, updateEmail, updatePassword } from "../../Store/ProfileSlice";
+import { fetchUserProfile, updateFullName, updateEmail, updatePassword } from "../../Store/ProfileSlice";
 
 const Settings = () => {
     const dispatch = useDispatch();
@@ -61,7 +61,7 @@ const Settings = () => {
                     <div>
                         <h2>Name</h2>
                         <p>Modify your displayed name within the application.</p>
-                        <button className="settings-btn">Update</button>
+                        <button className="settings-btn" onClick={handleUpdateName}>Update</button>
                     </div>
                     <div className="both">
                         {openName ? (
@@ -84,7 +84,7 @@ const Settings = () => {
                     <div>
                         <h2>Email</h2>
                         <p>Change the email address associated with your account.</p>
-                        <button className="settings-btn">Update</button>
+                        <button className="settings-btn" onClick={handleUpdateEmail}>Update</button>
                     </div>
                     <div className="both">
                         {openEmail ? (
@@ -107,7 +107,7 @@ const Settings = () => {
                     <div>
                         <h2>Password</h2>
                         <p>Change your account password for improved security.</p>
-                        <button className="settings-btn">Update</button>
+                        <button className="settings-btn" onClick={handleUpdatePassword}>Update</button>
                     </div>
                     <div className="both">
                         {openPassword ? (

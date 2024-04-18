@@ -8,17 +8,13 @@ const ExpensesChart = ({data}) => {
 
     const sortedData = [...data].sort((a, b) => parseInt(a.month) - parseInt(b.month));
     
-    // Vérifiez si sortedData contient au moins deux éléments
     if (sortedData.length < 2) {
-        // Si sortedData contient moins de deux éléments, affichez un message d'erreur ou retournez simplement
         return <div>Insufficient data to calculate percentage difference</div>;
     }
 
-    // Obtenez les deux dernières valeurs
     const latestValue = parseInt(sortedData[sortedData.length - 1].total_expense);
     const previousValue = parseInt(sortedData[sortedData.length - 2].total_expense);
     
-    // Calculez la différence en pourcentage
     const differencePercentage = ((latestValue - previousValue) / previousValue) * 100;
 
     const totalExpense = data.reduce((acc, curr) => acc + parseInt(curr.total_expense), 0);

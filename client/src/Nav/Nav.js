@@ -2,10 +2,31 @@ import React, { useState, useEffect } from "react";
 import './Nav.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight, faChevronLeft, faBars, faChartPie, faSackDollar, faReceipt, faUsers, faGear, faArrowRightFromBracket, faMagnifyingGlass, faBell } from '@fortawesome/free-solid-svg-icons';
-import { NavLink, Link, Outlet } from "react-router-dom";
+import { NavLink, Link, Outlet, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Nav = () => {
+    const navigate = useNavigate();
     const [open, setOpen] = useState(false);
+
+    useEffect(() => {
+        const verifyAuth = async () => {
+            try {
+                const token = localStorage.getItem('token');
+                const response = await axios.get('http://localhost:24635/auth/verify', {
+                    headers: {
+                        Authorization: token
+                    }
+                });
+                console.log(response.data);
+                
+            } catch (error) {
+                navigate('/register')
+            }
+        };
+    
+        verifyAuth();
+    }, []);
 
     useEffect(() => {
         const handleResize = () => {
@@ -24,6 +45,11 @@ const Nav = () => {
     const handleOpen = () => {
         setOpen(!open)
     }
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        navigate('/login');
+    };
 
     return (
         <div className={open ? "grid-2" : "grid"}>
@@ -63,7 +89,7 @@ const Nav = () => {
                     <p>hazout26@gmail.com</p>
                     <div className="group-btn">
                         <NavLink to={'/settings'}><button className="btn"><FontAwesomeIcon icon={faGear} size="lg" className="setting-icon" /></button></NavLink>
-                        <button className="btn"><FontAwesomeIcon icon={faArrowRightFromBracket} size="lg" /></button>
+                        <button className="btn" onClick={handleLogout}><FontAwesomeIcon icon={faArrowRightFromBracket} size="lg" /></button>
                     </div>
                 </div>
             </nav>
@@ -105,7 +131,7 @@ const Nav = () => {
                         <p>hazout26@gmail.com</p>
                         <div className="group-btn">
                             <NavLink to={'/settings'}><button className="btn" onClick={handleOpen}><FontAwesomeIcon icon={faGear} size="lg" className="setting-icon" /></button></NavLink>
-                            <button className="btn" onClick={handleOpen}><FontAwesomeIcon icon={faArrowRightFromBracket} size="lg" /></button>
+                            <button className="btn" onClick={handleLogout}><FontAwesomeIcon icon={faArrowRightFromBracket} size="lg" /></button>
                         </div>
                     </div>
                 </div>
@@ -113,7 +139,7 @@ const Nav = () => {
             </nav>
             ):(
                 <nav className="little">
-                    <button className="btn-5" onClick={handleOpen}><FontAwesomeIcon icon={faChevronRight} size="2xl" /></button>
+                    <button className="btn-5"><FontAwesomeIcon icon={faChevronRight} size="2xl" /></button>
                 </nav>
             )}
             <div className="content">

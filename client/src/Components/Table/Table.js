@@ -28,7 +28,7 @@ const Table = ({data_table = [], type}) => {
                 {type === 'member' ? (
                     <tbody>
                     {data_table.map((item) => (
-                    <tr key={item.income_id} className="table-element">
+                    <tr key={item.member_id} className="table-element">
                         <td>{item.full_name}</td>
                         <td>${item.amount}</td>
                         <td><Link to={`./update/${item.member_id}`}><button className="update-btn"><FontAwesomeIcon icon={faPenToSquare} size="lg" /></button></Link></td>
@@ -50,7 +50,7 @@ const Table = ({data_table = [], type}) => {
                 ):(
                 <tbody>
                     {data_table.map((item) => (
-                    <tr key={item.income_id} className="table-element">
+                    <tr key={item.expense_id} className="table-element">
                         <td>{item.type}</td>
                         <td>{item.title}</td>
                         <td>${item.amount}</td>

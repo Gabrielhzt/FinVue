@@ -17,19 +17,16 @@ const Update = ({ page }) => {
     const dispatch = useDispatch();
     const [selectedOption, setSelectedOption] = useState(page);
 
-    let idProperty, findFunction;
+    let findFunction;
 
     switch (page) {
         case "member":
-            idProperty = "member_id";
             findFunction = item => String(item.member_id) === id;
             break;
         case "income":
-            idProperty = "income_id";
             findFunction = item => String(item.income_id) === id;
             break;
         case "expense":
-            idProperty = "expense_id";
             findFunction = item => String(item.expense_id) === id;
             break;
         default:
@@ -53,9 +50,8 @@ const Update = ({ page }) => {
                     setDate(firstTenDates);
                 }
             }
-            console.log(id)
         }
-    }, [id, items, selectedOption]);
+    }, [id, items, selectedOption, findFunction]);
 
     const handleChange = event => {
         setSelectedOption(event.target.value);
@@ -70,7 +66,6 @@ const Update = ({ page }) => {
             date: date
         };
     
-        // Ajoutez des conditions pour définir correctement les propriétés en fonction de l'option sélectionnée
         if (selectedOption === 'member') {
             updateAction = {
                 ...updateAction,
@@ -85,12 +80,9 @@ const Update = ({ page }) => {
     
         switch (selectedOption) {
             case "income":
-                console.log(id);
                 dispatch(updateIncome({ incomeId: id, incomeData: updateAction }));
                 break;
             case "expense":
-                console.log(id);
-                console.log({ expenseId: id, expenseData: updateAction });
                 dispatch(updateExpense({ expenseId: id, expenseData: updateAction }));
                 break;
             case "member":

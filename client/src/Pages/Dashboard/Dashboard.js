@@ -38,13 +38,11 @@ const Dashboard = () => {
         }
     }, [totalMembers, totalMembers_status]);
 
-    const userFullName = userProfile ? userProfile.full_name : "User";
-
     return (
         <div>
             <div className="welc-3">
                 <h1>Expense Tracker</h1>
-                {status === 'succeeded' && <p>Welcome, {userFullName}!</p>}
+                {status === 'succeeded' && <p>Welcome, {userProfile}!</p>}
                 {status === 'loading' && <p>Loading user profile...</p>}
                 {status === 'failed' && <p>Error: Unable to load user profile</p>}
             </div>
@@ -85,7 +83,7 @@ const Dashboard = () => {
                     </div>
                     <div className="other-members">
                         {members.map((member) => (
-                            <div key={member.id} className="other-profile">
+                            <div key={member.member_id} className="other-profile">
                                 <div className="profile-img-2"></div>
                                 <p>{member.full_name}: ${member.amount}</p>
                             </div>

@@ -42,7 +42,6 @@ export const updateExpense = createAsyncThunk(
   'expenses/updateExpense',
   async ({ expenseId, expenseData }) => {
     try {
-        console.log(expenseData, expenseId)
         const token = localStorage.getItem('token');
         const response = await axios.put(`http://localhost:24635/expenses/update/${expenseId}`, 
         { ...expenseData }, {
